@@ -11,7 +11,13 @@ public class Movimiento_Player : MonoBehaviour
 
     //VARIABLES
     bool suelo = true;
-    float velocidad = 3f;
+    float velocidad = 2f;
+    float fuerzaSalto = 4f;
+    bool alimentoin = false;
+
+    //OBJETOS
+    GameObject objetoInteractuado;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +32,7 @@ public class Movimiento_Player : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Terrain")
+        if (collision.gameObject.tag == "Suelo")
         {
             suelo = true;
         }
@@ -36,12 +42,40 @@ public class Movimiento_Player : MonoBehaviour
         Vector2 movAction = playerinput.actions["Move"].ReadValue<Vector2>();
         rb.velocity = new Vector3(movAction.x * velocidad, rb.velocity.y, movAction.y * velocidad);
     }
-    void Salto(InputAction.CallbackContext context)
+    public void Salto(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && suelo)
         {
-            rb.AddForce(Vector3.up * 3, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
             suelo = false;
+        }
+    }
+    public void Comida(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed && alimentoin)
+        {
+            //Guardar en inventario y añadir imagen en el menu
+            Debug.Log("Alimento cogido, next");
+            Destroy(objetoInteractuado);
+            objetoInteractuado = null;
+            alimentoin = false;
+        }
+    }
+    public void OnTriggerEnter(Collider trigger)
+    {
+        if (trigger.gameObject.tag == "Alimento")
+        {
+            objetoInteractuado = trigger.gameObject;
+            alimentoin = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider trigger)
+    {
+        if (trigger.gameObject.tag == "Alimento")
+        {
+            alimentoin = false;
+            objetoInteractuado = null;
         }
     }
 }
