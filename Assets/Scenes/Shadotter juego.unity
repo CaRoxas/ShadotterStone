@@ -426,7 +426,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.81104
+      value: 494.29105
       objectReference: {fileID: 0}
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -434,7 +434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1082852
+      value: 414.10828
       objectReference: {fileID: 0}
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -651,7 +651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7834439163254072695, guid: f70193883551d504d887832c88062858, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.52
+      value: 492
       objectReference: {fileID: 0}
     - target: {fileID: 7834439163254072695, guid: f70193883551d504d887832c88062858, type: 3}
       propertyPath: m_LocalPosition.y
@@ -659,7 +659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7834439163254072695, guid: f70193883551d504d887832c88062858, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 413
       objectReference: {fileID: 0}
     - target: {fileID: 7834439163254072695, guid: f70193883551d504d887832c88062858, type: 3}
       propertyPath: m_LocalRotation.w
@@ -747,6 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae9cb32df00e46947bef8cd53145c39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Vidas: {fileID: 0}
 --- !u!114 &1556484821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,7 +837,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1556484820}
         m_TargetAssemblyTypeName: Movimiento_Player, Assembly-CSharp
-        m_MethodName: Comida
+        m_MethodName: CogerComidayGuardar
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -958,7 +959,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.81104
+      value: 494.29105
       objectReference: {fileID: 0}
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -966,7 +967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.82
+      value: 419.82
       objectReference: {fileID: 0}
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1110,7 +1111,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.53
+      value: 500.01
       objectReference: {fileID: 0}
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1118,7 +1119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1082852
+      value: 414.10828
       objectReference: {fileID: 0}
     - target: {fileID: 2216184167992057348, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
       propertyPath: m_LocalRotation.w

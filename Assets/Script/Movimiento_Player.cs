@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Movimiento_Player : MonoBehaviour
 {
+    //En este script se gestiona todo del jugador, ya se de su imput o tal, llamando eso sí, a los scripts respectivos de vida, contador...
     //PERSONAJE
     Rigidbody rb;
     PlayerInput playerinput;
@@ -18,6 +19,8 @@ public class Movimiento_Player : MonoBehaviour
     //OBJETOS
     GameObject objetoInteractuado;
 
+    //SCRIPTS
+    public Vida_Player Vidas;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,15 +53,27 @@ public class Movimiento_Player : MonoBehaviour
             suelo = false;
         }
     }
-    public void Comida(InputAction.CallbackContext context)
+    //AQUI GUARDAMOS LA COMIDA EN EL INVENTARIO CUANDO CHOCAMOS CON ELLA
+    public void CogerComidayGuardar(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && alimentoin)
         {
             //Guardar en inventario y añadir imagen en el menu
+            
             Debug.Log("Alimento cogido, next");
             Destroy(objetoInteractuado);
+            // inventario.anyadircomida
+            // vida_player.anyadirvida
+            // uimanager.cambiarloquesea
             objetoInteractuado = null;
             alimentoin = false;
+        }
+    }
+    public void ComerComida(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Vidas.Comer();
         }
     }
     public void OnTriggerEnter(Collider trigger)
