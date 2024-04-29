@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Movimiento_Player : MonoBehaviour
 {
-    //En este script se gestiona todo del jugador, ya se de su imput o tal, llamando eso sí, a los scripts respectivos de vida, contador...
+    //En este script se gestiona todo del jugador, ya sea de su imput o tal, llamando eso sí, a los scripts respectivos de vida, contador...
+
     //PERSONAJE
     Rigidbody rb;
     PlayerInput playerinput;
@@ -13,6 +14,7 @@ public class Movimiento_Player : MonoBehaviour
     //VARIABLES
     bool suelo = true;
     float velocidad = 2f;
+    float gradosrot = 20f;
     float fuerzaSalto = 4f;
     bool alimentoin = false;
 
@@ -21,6 +23,7 @@ public class Movimiento_Player : MonoBehaviour
 
     //SCRIPTS
     public Vida_Player Vidas;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,7 @@ public class Movimiento_Player : MonoBehaviour
     void Update()
     {
         Movimiento();
+        Rotaciones();
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -42,8 +46,24 @@ public class Movimiento_Player : MonoBehaviour
     }
     void Movimiento()
     {
+        /*/ESTA ES LA VERSIÓN QUE SE MUEVA NORMAL EN X e Y
+        rb.velocity = new Vector3(movAction.x * velocidad, rb.velocity.y, movAction.y * velocidad);*/
+
+        /*/ESTA OTRA HACE QUE CUANDO SE GIRE SE MUEVA EN EL EJE LOCAL DEL PERSONAJE
+        NOTA: TRANSFORM.FORWARD = ADELANTE EN LOCAL, FORWARD (SIN TRANSAFORM) = ADELANTE EN GLOBAL (EL MUNDO)*/
+
         Vector2 movAction = playerinput.actions["Move"].ReadValue<Vector2>();
-        rb.velocity = new Vector3(movAction.x * velocidad, rb.velocity.y, movAction.y * velocidad);
+        Vector3 adelante = movAction.y * velocidad * transform.forward;
+        Vector3 lado = movAction.x * velocidad * transform.right;
+        Vector3 movimiento = adelante + lado;
+        movimiento.y = rb.velocity.y;
+        rb.velocity = movimiento;
+    }
+    private void Rotaciones()
+    {
+        Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
+        Debug.Log(rotAction.ToString());
+        transform.Rotate(0,rotAction.x * gradosrot * Time.deltaTime,0);
     }
     public void Salto(InputAction.CallbackContext context)
     {
