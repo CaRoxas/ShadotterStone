@@ -13,7 +13,7 @@ public class Movimiento_Player : MonoBehaviour
 
     //VARIABLES
     bool suelo = true;
-    float velocidad = 2f;
+    float velocidad = 4f;
     float gradosrot = 20f;
     float fuerzaSalto = 4f;
     bool alimentoin = false;
@@ -49,7 +49,7 @@ public class Movimiento_Player : MonoBehaviour
         /*/ESTA ES LA VERSIÓN QUE SE MUEVA NORMAL EN X e Y
         rb.velocity = new Vector3(movAction.x * velocidad, rb.velocity.y, movAction.y * velocidad);*/
 
-        /*/ESTA OTRA HACE QUE CUANDO SE GIRE SE MUEVA EN EL EJE LOCAL DEL PERSONAJE
+        /*/ESTA HACE QUE CUANDO SE GIRE SE MUEVA EN EL EJE LOCAL DEL PERSONAJE
         NOTA: TRANSFORM.FORWARD = ADELANTE EN LOCAL, FORWARD (SIN TRANSAFORM) = ADELANTE EN GLOBAL (EL MUNDO)*/
 
         Vector2 movAction = playerinput.actions["Move"].ReadValue<Vector2>();
@@ -62,7 +62,7 @@ public class Movimiento_Player : MonoBehaviour
     private void Rotaciones()
     {
         Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
-        Debug.Log(rotAction.ToString());
+        //Debug.Log(rotAction.ToString());
         transform.Rotate(0,rotAction.x * gradosrot * Time.deltaTime,0);
     }
     public void Salto(InputAction.CallbackContext context)
@@ -80,13 +80,25 @@ public class Movimiento_Player : MonoBehaviour
         {
             //Guardar en inventario y añadir imagen en el menu
             
-            Debug.Log("Alimento cogido, next");
+            if (objetoInteractuado.name.Contains("Food_Fish"))
+            {
+                Debug.Log("pescaito cogido");
+            }
+            if (objetoInteractuado.name.Contains("Food_Egg"))
+            {
+                Debug.Log("huevo cogido");
+            }
+            if (objetoInteractuado.name == "Food_Blueberry")
+            {
+                Debug.Log("arandanito cogido");
+            }
             Destroy(objetoInteractuado);
             // inventario.anyadircomida
             // vida_player.anyadirvida
             // uimanager.cambiarloquesea
             objetoInteractuado = null;
             alimentoin = false;
+
         }
     }
     public void ComerComida(InputAction.CallbackContext context)
@@ -102,6 +114,7 @@ public class Movimiento_Player : MonoBehaviour
         {
             objetoInteractuado = trigger.gameObject;
             alimentoin = true;
+ 
         }
     }
 
