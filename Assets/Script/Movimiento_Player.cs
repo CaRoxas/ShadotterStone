@@ -23,8 +23,8 @@ public class Movimiento_Player : MonoBehaviour
 
     //SCRIPTS
     public Vida_Player Vidas;
+    public Inventario Mochila;
 
-    // Start is called before the first frame update
     void Start()
     {
        rb = GetComponent<Rigidbody>();
@@ -62,7 +62,6 @@ public class Movimiento_Player : MonoBehaviour
     private void Rotaciones()
     {
         Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
-        //Debug.Log(rotAction.ToString());
         transform.Rotate(0,rotAction.x * gradosrot * Time.deltaTime,0);
     }
     public void Salto(InputAction.CallbackContext context)
@@ -73,28 +72,26 @@ public class Movimiento_Player : MonoBehaviour
             suelo = false;
         }
     }
-    //AQUI GUARDAMOS LA COMIDA EN EL INVENTARIO CUANDO CHOCAMOS CON ELLA
     public void CogerComidayGuardar(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && alimentoin)
         {
-            //Guardar en inventario y añadir imagen en el menu
-            
             if (objetoInteractuado.name.Contains("Food_Fish"))
             {
                 Debug.Log("pescaito cogido");
+                Mochila.GuardarPescado();
             }
             if (objetoInteractuado.name.Contains("Food_Egg"))
             {
                 Debug.Log("huevo cogido");
+                Mochila.GuardarHuevo();
             }
             if (objetoInteractuado.name == "Food_Blueberry")
             {
                 Debug.Log("arandanito cogido");
+                Mochila.GuadarArandano();
             }
             Destroy(objetoInteractuado);
-            // inventario.anyadircomida
-            // vida_player.anyadirvida
             // uimanager.cambiarloquesea
             objetoInteractuado = null;
             alimentoin = false;
@@ -105,7 +102,15 @@ public class Movimiento_Player : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            Vidas.Comer();
+            //Poner que cuando interactua con el huevo en el inventario haga lo siguiente:
+            Vidas.ComerHuevo();
+            Mochila.QuitarHuevo();
+            //Poner que cuando interactua con el pescado en el inventario haga lo siguiente:
+            Vidas.ComerPescao();
+            Mochila.QuitarPescado();
+            //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
+            Vidas.ComerArandano();
+            Mochila.QuitarArandano();
         }
     }
     public void OnTriggerEnter(Collider trigger)
@@ -114,7 +119,6 @@ public class Movimiento_Player : MonoBehaviour
         {
             objetoInteractuado = trigger.gameObject;
             alimentoin = true;
- 
         }
     }
 

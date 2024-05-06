@@ -3,7 +3,10 @@ guid: 3fe4a7f120d460a47856a7ceb4168735
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Pescado: {fileID: 6885112180110138433, guid: 0fa9647e13fceb445865a3422f5773d0, type: 3}
+  - Arandano: {fileID: 686869787699510863, guid: 6f2ccbfe7549565419ee3dbc52ff4ff2, type: 3}
+  - Huevo: {fileID: 60720432167276078, guid: c8184e15d7ad91042b1b18bc57f39458, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

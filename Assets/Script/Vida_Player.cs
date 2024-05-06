@@ -6,13 +6,15 @@ using UnityEngine.InputSystem;
 public class Vida_Player : MonoBehaviour
 {
     //VARIABLES
-    float Vida = 5;
+    float vida = 5;
 
     //OBJETOS
     public GameObject Pescado;
+    public GameObject Arandano;
+    public GameObject Huevo;
 
     //SCRIPTS
-    //public NOMBRE SCRIPT nombre que le damos;
+
     void Start()
     {
 
@@ -22,10 +24,21 @@ public class Vida_Player : MonoBehaviour
     {
 
     }
-    public void Comer()
+    public void ComerArandano()
     {
-        // hacemos lo que sea con las vidas
+        vida = vida + 0.5f;
     }
-
+    public void ComerHuevo()
+    {
+        vida = vida + 1;
+    }
+    public void ComerPescao()
+    {
+        vida = vida + 2;
+    }
+    public void PasaTiempo()
+    {
+        vida = vida - 0.5f;
+    }
 
 }
