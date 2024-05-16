@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Movimiento_Player : MonoBehaviour
+public class Principal_Player : MonoBehaviour
 {
     //En este script se gestiona todo del jugador, ya sea de su imput o tal, llamando eso sí, a los scripts respectivos de vida, contador...
 
     //PERSONAJE
     Rigidbody rb;
     PlayerInput playerinput;
+    Animator animacion;
 
     //VARIABLES
     bool suelo = true;
@@ -29,6 +30,7 @@ public class Movimiento_Player : MonoBehaviour
     {
        rb = GetComponent<Rigidbody>();
        playerinput = GetComponent<PlayerInput>();
+       animacion = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -58,6 +60,14 @@ public class Movimiento_Player : MonoBehaviour
         Vector3 movimiento = adelante + lado;
         movimiento.y = rb.velocity.y;
         rb.velocity = movimiento;
+        if (movAction.y > 0 //poner or )
+        {
+            animacion.SetBool("SeMueve", true);
+        }
+        else
+        {
+            animacion.SetBool("SeMueve", false);
+        }
     }
     private void Rotaciones()
     {
@@ -91,11 +101,12 @@ public class Movimiento_Player : MonoBehaviour
                 Debug.Log("arandanito cogido");
                 Mochila.GuadarArandano();
             }
-            Destroy(objetoInteractuado);
-            // uimanager.cambiarloquesea
+            animacion.SetTrigger("Recoger");
+
+            Destroy(objetoInteractuado, animacion.GetCurrentAnimatorStateInfo(0).length);
             objetoInteractuado = null;
             alimentoin = false;
-
+            
         }
     }
     public void ComerComida(InputAction.CallbackContext context)
