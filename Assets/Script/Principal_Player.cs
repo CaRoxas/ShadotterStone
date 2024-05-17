@@ -101,7 +101,7 @@ public class Principal_Player : MonoBehaviour
                 Debug.Log("huevo cogido");
                 Mochila.GuardarHuevo();
             }
-            if (objetoInteractuado.name == "Food_Blueberry")
+            if (objetoInteractuado.name.Contains ("Food_Blueberry"))
             {
                 Debug.Log("arandanito cogido");
                 Mochila.GuadarArandano();
