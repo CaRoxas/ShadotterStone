@@ -60,7 +60,7 @@ public class Principal_Player : MonoBehaviour
         Vector3 movimiento = adelante + lado;
         movimiento.y = rb.velocity.y;
         rb.velocity = movimiento;
-        if (movAction.y > 0 //poner or )
+        if (movAction.y > 0 || movAction.x >0)
         {
             animacion.SetBool("SeMueve", true);
         }
@@ -80,6 +80,11 @@ public class Principal_Player : MonoBehaviour
         {
             rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
             suelo = false;
+            animacion.SetBool("Saltar", true);
+        }
+        else
+        {
+            animacion.SetBool("Saltar", false);
         }
     }
     public void CogerComidayGuardar(InputAction.CallbackContext context)
@@ -102,11 +107,9 @@ public class Principal_Player : MonoBehaviour
                 Mochila.GuadarArandano();
             }
             animacion.SetTrigger("Recoger");
-
             Destroy(objetoInteractuado, animacion.GetCurrentAnimatorStateInfo(0).length);
             objetoInteractuado = null;
             alimentoin = false;
-            
         }
     }
     public void ComerComida(InputAction.CallbackContext context)
