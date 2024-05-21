@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Casita : MonoBehaviour
 {
-    Animator animatione;
+    public Animator animatione;
     // Start is called before the first frame update
     void Start()
     {

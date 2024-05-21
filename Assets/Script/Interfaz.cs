@@ -10,6 +10,7 @@ public class Interfaz : MonoBehaviour
     public TMP_Text huenum;
     public TMP_Text peznum;
 
+
     //SCRIPTS
     public Inventario inventario;
     public Vida_Player vida;

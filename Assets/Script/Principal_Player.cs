@@ -41,6 +41,7 @@ public class Principal_Player : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Suelo")
         {
             suelo = true;
@@ -68,6 +69,7 @@ public class Principal_Player : MonoBehaviour
         {
             animacion.SetBool("SeMueve", false);
         }
+        // MODIFICAR EL PARAMETRO VELOCIDAD DEL ANIMATOR
     }
     private void Rotaciones()
     {
