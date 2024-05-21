@@ -9,11 +9,12 @@ public class Inventario : MonoBehaviour
     int huevo = 0;
     int pescado = 0;
 
+    //
     //¿cual está activo?
-    // activo = 0 -> arandano
-    // actio = 1 -> huevo
-    // activo = 2 -> pescado
-    //float activo = 0;
+    // activa = 0 -> arandano
+    // activa = 1 -> huevo
+    // activa = 2 -> pescado
+    public static float comidactiva = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +27,24 @@ public class Inventario : MonoBehaviour
     {
         
     }
+
+
+    public int NumeroArandanos()
+    {
+        return arandano;
+    }
+    public int NumeroHuevos() 
+    {
+        return huevo;
+    }
+    public int NumeroPescados()
+    {
+        return pescado;
+    }
+
     public void GuadarArandano() 
     {
         arandano++;
-        Debug.Log(arandano);
     }
     public void GuardarHuevo()
     {
@@ -42,13 +57,32 @@ public class Inventario : MonoBehaviour
     public void QuitarArandano()
     {
         arandano--;
+        comidactiva = 0;
     }
     public void QuitarHuevo()
     {
         huevo--;
+        comidactiva = 1;
     }
     public void QuitarPescado()
     {
         pescado--;
+        comidactiva = 2;
+    }
+    public void ActivoDerecha()
+    {
+        if (comidactiva >= 3)
+        {
+            comidactiva = 0;
+        }
+        //
+    }
+    public void ActivoIzquierda()
+    {
+        if (comidactiva <= 0)
+        {
+            comidactiva = 3;
+        }
+        //
     }
 }

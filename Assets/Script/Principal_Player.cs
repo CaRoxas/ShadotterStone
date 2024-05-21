@@ -112,6 +112,13 @@ public class Principal_Player : MonoBehaviour
             alimentoin = false;
         }
     }
+    public void CambiarComida (InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+
+        }
+    }
     public void ComerComida(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)

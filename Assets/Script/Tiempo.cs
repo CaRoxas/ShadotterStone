@@ -19,6 +19,7 @@ public class Tiempo : MonoBehaviour
     void Update()
     {
         transform.Rotate(0, rotasol * Time.deltaTime, 0);
+        
     }
     void QuitarVida()
     {
