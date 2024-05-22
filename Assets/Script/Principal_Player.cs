@@ -18,6 +18,7 @@ public class Principal_Player : MonoBehaviour
     float gradosrot = 20f;
     float fuerzaSalto = 4f;
     bool alimentoin = false;
+    bool puertain = false;
 
     //OBJETOS
     GameObject objetoInteractuado;
@@ -25,6 +26,7 @@ public class Principal_Player : MonoBehaviour
     //SCRIPTS
     public Vida_Player Vidas;
     public Inventario Mochila;
+    public Casita Casa;
 
     void Start()
     {
@@ -38,14 +40,6 @@ public class Principal_Player : MonoBehaviour
     {
         Movimiento();
         Rotaciones();
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag == "Suelo")
-        {
-            suelo = true;
-        }
     }
     void Movimiento()
     {
@@ -64,12 +58,15 @@ public class Principal_Player : MonoBehaviour
         if (movAction.y > 0 || movAction.x >0)
         {
             animacion.SetBool("SeMueve", true);
+            animacion.SetFloat("Velocidad", movAction.y);
         }
         else
         {
             animacion.SetBool("SeMueve", false);
+            animacion.SetFloat("Velocidad", movAction.y);
         }
         // MODIFICAR EL PARAMETRO VELOCIDAD DEL ANIMATOR
+
     }
     private void Rotaciones()
     {
@@ -113,6 +110,11 @@ public class Principal_Player : MonoBehaviour
             objetoInteractuado = null;
             alimentoin = false;
         }
+        /*/if (context.phase == InputActionPhase.Performed && puertain)
+        {
+            Casa.AnimacionPuerta();
+            puertain = false;
+        }*/
     }
     public void CambiarComida (InputAction.CallbackContext context)
     {
@@ -121,7 +123,7 @@ public class Principal_Player : MonoBehaviour
 
         }
     }
-    public void ComerComida(InputAction.CallbackContext context)
+    public void Comer(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
@@ -136,12 +138,25 @@ public class Principal_Player : MonoBehaviour
             Mochila.QuitarArandano();
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Suelo")
+        {
+            suelo = true;
+        }
+    }
     public void OnTriggerEnter(Collider trigger)
     {
         if (trigger.gameObject.tag == "Alimento")
         {
             objetoInteractuado = trigger.gameObject;
             alimentoin = true;
+        }
+        if (trigger.gameObject.tag == "Puerta")
+        {
+            objetoInteractuado = trigger.gameObject;
+            puertain = true;
         }
     }
 
@@ -150,6 +165,11 @@ public class Principal_Player : MonoBehaviour
         if (trigger.gameObject.tag == "Alimento")
         {
             alimentoin = false;
+            objetoInteractuado = null;
+        }
+        if (trigger.gameObject.tag == "Puerta")
+        {
+            puertain = false;
             objetoInteractuado = null;
         }
     }
