@@ -18,13 +18,6 @@ public class Casita : MonoBehaviour
     {
 
     }
-    /*/private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "Diva")
-        {
-            animatione.SetBool("Abril",true);
-        }
-    }*/
     public void AnimacionPuerta()
     {
         animatione.SetBool("Abril", true);

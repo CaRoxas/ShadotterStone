@@ -75,7 +75,6 @@ public class Inventario : MonoBehaviour
         {
             comidactiva = 0;
         }
-        //
     }
     public void ActivoIzquierda()
     {
@@ -83,6 +82,5 @@ public class Inventario : MonoBehaviour
         {
             comidactiva = 3;
         }
-        //
     }
 }

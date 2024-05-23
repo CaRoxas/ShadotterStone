@@ -19,6 +19,7 @@ public class Principal_Player : MonoBehaviour
     float fuerzaSalto = 4f;
     bool alimentoin = false;
     bool puertain = false;
+    public bool comidacogida = false;
 
     //OBJETOS
     GameObject objetoInteractuado;
@@ -109,12 +110,13 @@ public class Principal_Player : MonoBehaviour
             Destroy(objetoInteractuado, animacion.GetCurrentAnimatorStateInfo(0).length);
             objetoInteractuado = null;
             alimentoin = false;
+            comidacogida = true;
         }
-        /*/if (context.phase == InputActionPhase.Performed && puertain)
+        if (context.phase == InputActionPhase.Performed && puertain)
         {
             Casa.AnimacionPuerta();
             puertain = false;
-        }*/
+        }
     }
     public void CambiarComida (InputAction.CallbackContext context)
     {

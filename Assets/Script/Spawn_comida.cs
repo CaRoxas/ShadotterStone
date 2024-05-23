@@ -9,12 +9,17 @@ public class Spawn_comida : MonoBehaviour
     public GameObject huevillos;
     public GameObject pescaillos;
 
+    //SCRIPTS
+    public Principal_Player jugador;
+
     //VARIABLES
     public Vector3 empezar;
-    bool maximo;
-    float cantidadaran = 50;
-    float cantidadhue = 30;
-    float cantidadpez = 20;
+    float maxaran = 50;
+    float maxhue = 30;
+    float maxpez = 20;
+    float cantidadaran = 0;
+    float cantidadhue = 0;
+    float cantidadpez = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,21 +29,17 @@ public class Spawn_comida : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (maximo == false)
+        if (cantidadaran <= maxaran)
         {
             SpawnArandano();
-        }
-        else
-        {
-            if (cantidadaran <= 50) 
+            cantidadaran++;
+            if (jugador.comidacogida == true)
             {
-                SpawnArandano();
-            }
-            else
-            {
-                maximo = false;
+                cantidadaran--;
+                jugador.comidacogida = false;
             }
         }
+        Debug.Log(cantidadaran);
     }
     void SpawnArandano()
     {
