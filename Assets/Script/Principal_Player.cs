@@ -87,7 +87,7 @@ public class Principal_Player : MonoBehaviour
             animacion.SetBool("Saltar", false);
         }
     }
-    public void CogerComidayGuardar(InputAction.CallbackContext context)
+    public void AccionesCogerAbrir(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && alimentoin)
         {

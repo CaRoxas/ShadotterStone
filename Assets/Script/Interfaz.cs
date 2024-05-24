@@ -1,3 +1,4 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,10 +11,14 @@ public class Interfaz : MonoBehaviour
     public TMP_Text huenum;
     public TMP_Text peznum;
 
+    //IMÁGENES
+    public Image aranfoto;
+    public Image huefoto;
+    public Image pezfoto;
 
     //SCRIPTS
     public Inventario inventario;
-    public Vida_Player vida;
+    public Principal_Player jugador;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +38,7 @@ public class Interfaz : MonoBehaviour
     }
     public void AlimentoSeleccionado()
     {
-        
+
     }
 
 }
