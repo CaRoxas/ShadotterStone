@@ -15,7 +15,7 @@ public class Principal_Player : MonoBehaviour
     //VARIABLES
     bool suelo = true;
     float velocidad = 4f;
-    float gradosrot = 20f;
+    float gradosrot = 45f;
     float fuerzaSalto = 4f;
     bool alimentoin = false;
     bool puertain = false;
@@ -116,6 +116,11 @@ public class Principal_Player : MonoBehaviour
         {
             Casa.AnimacionPuerta();
             puertain = false;
+        }
+        else if (context.phase == InputActionPhase.Performed)
+        {
+            Casa.CerrarPuerta();
+            puertain = true;
         }
     }
     public void CambiarComida (InputAction.CallbackContext context)

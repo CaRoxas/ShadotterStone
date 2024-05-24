@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 7834439163254072695}
   - component: {fileID: -6790698597171296748}
   - component: {fileID: 9021818071021445100}
-  - component: {fileID: -8634006580931053670}
   - component: {fileID: -9070913548604538184}
   - component: {fileID: 4154496143479832221}
   m_Layer: 0
@@ -117,20 +116,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.3679686, y: 3.3787103, z: 2.104343}
   m_Center: {x: -1.9402626, y: 1.7019348, z: 1.7528636}
---- !u!114 &-8634006580931053670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5869472575213569925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae9cb32df00e46947bef8cd53145c39d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Vidas: {fileID: 0}
-  Mochila: {fileID: 0}
 --- !u!114 &-9070913548604538184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +147,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -8634006580931053670}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Movimiento_Player, Assembly-CSharp
         m_MethodName: Salto
         m_Mode: 0
@@ -178,7 +163,7 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -8634006580931053670}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Movimiento_Player, Assembly-CSharp
         m_MethodName: CogerComidayGuardar
         m_Mode: 0

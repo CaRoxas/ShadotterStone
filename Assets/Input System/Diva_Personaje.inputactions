@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "381920d2-2e66-4a0a-bd4c-452eae8330ff",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -231,59 +231,15 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "174ecbfa-0283-4dd2-b734-c1bdf198fb01",
-                    "path": "2DVector(mode=1)",
+                    "name": "",
+                    "id": "145d394b-a70e-446e-aec0-603a1ca6a6a0",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "TurnAround",
-                    "isComposite": true,
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "left",
-                    "id": "1ac7000a-1592-4032-8604-b5e5c761a237",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TurnAround",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "1a71d136-3611-466c-8cc9-51cd8b827caf",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TurnAround",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "a4be7df5-da29-4669-85b6-5a1b4bb565cd",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TurnAround",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "8508997d-6be7-4221-a8bf-cdd6ef41ce4f",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TurnAround",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         },

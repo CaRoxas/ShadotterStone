@@ -23,4 +23,9 @@ public class Casita : MonoBehaviour
         animatione.SetBool("Abril", true);
         colisionpuerta.enabled = false;
     }
+    public void CerrarPuerta()
+    {
+        animatione.SetBool("Abril", false);
+        colisionpuerta.enabled = true;
+    }
 }
