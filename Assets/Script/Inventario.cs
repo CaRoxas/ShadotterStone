@@ -5,16 +5,14 @@ using UnityEngine;
 public class Inventario : MonoBehaviour
 {
     //OBJECTOS
-    int arandano = 0;
-    int huevo = 0;
-    int pescado = 0;
+    public int arandano = 0;
+    public int huevo = 0;
+    public int pescado = 0;
 
-    //
-    //¿cual está activo?
     // activa = 0 -> arandano
     // activa = 1 -> huevo
     // activa = 2 -> pescado
-    public static float comidactiva = 0;
+    public int comidactiva = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -71,16 +69,19 @@ public class Inventario : MonoBehaviour
     }
     public void ActivoDerecha()
     {
-        if (comidactiva >= 3)
+        comidactiva++;
+        if (comidactiva > 2)
         {
             comidactiva = 0;
         }
+
     }
     public void ActivoIzquierda()
     {
-        if (comidactiva <= 0)
+        comidactiva--;
+        if(comidactiva < 0)
         {
-            comidactiva = 3;
+            comidactiva = 2;
         }
     }
 }

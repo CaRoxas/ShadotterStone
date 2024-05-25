@@ -26,22 +26,21 @@ public class Vida_Player : MonoBehaviour
     void Update()
     {
         BarraVida.fillAmount = vidanow / vidamax;
+        if (vidanow > vidamax)
+        {
+            vidanow = vidamax;
+        }
     }
     public void ComerArandano()
     {
-        vidanow = vidanow + 0.5f;
+        vidanow = vidanow + 1;
     }
     public void ComerHuevo()
     {
-        vidanow = vidanow + 1;
+        vidanow = vidanow + 2;
     }
     public void ComerPescao()
     {
-        vidanow = vidanow + 2;
+        vidanow = vidanow + 5;
     }
-    public void PasaTiempo()
-    {
-        //vidanow = vidanow - 0.5f;
-    }
-
 }

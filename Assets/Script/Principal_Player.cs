@@ -19,7 +19,9 @@ public class Principal_Player : MonoBehaviour
     float fuerzaSalto = 4f;
     bool alimentoin = false;
     bool puertain = false;
-    public bool comidacogida = false;
+    public bool arandanocogido = false;
+    public bool huevocogido = false;
+    public bool pezcogido = false;
 
     //OBJETOS
     GameObject objetoInteractuado;
@@ -95,22 +97,24 @@ public class Principal_Player : MonoBehaviour
             {
                 Debug.Log("pescaito cogido");
                 Mochila.GuardarPescado();
+                pezcogido = true;
             }
             if (objetoInteractuado.name.Contains("Food_Egg"))
             {
                 Debug.Log("huevo cogido");
                 Mochila.GuardarHuevo();
+                huevocogido = true;
             }
             if (objetoInteractuado.name.Contains ("Food_Blueberry"))
             {
                 Debug.Log("arandanito cogido");
                 Mochila.GuadarArandano();
+                arandanocogido = true;
             }
             animacion.SetTrigger("Recoger");
             Destroy(objetoInteractuado, animacion.GetCurrentAnimatorStateInfo(0).length);
             objetoInteractuado = null;
             alimentoin = false;
-            comidacogida = true;
         }
         if (context.phase == InputActionPhase.Performed && puertain)
         {
@@ -123,26 +127,43 @@ public class Principal_Player : MonoBehaviour
             puertain = true;
         }
     }
-    public void CambiarComida (InputAction.CallbackContext context)
+    public void InventarioDerecha (InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-
+            Mochila.ActivoDerecha();
+        }
+    }
+    public void InventarioIzquierda (InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Mochila.ActivoIzquierda();
         }
     }
     public void Comer(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            //Poner que cuando interactua con el huevo en el inventario haga lo siguiente:
-            Vidas.ComerHuevo();
-            Mochila.QuitarHuevo();
-            //Poner que cuando interactua con el pescado en el inventario haga lo siguiente:
-            Vidas.ComerPescao();
-            Mochila.QuitarPescado();
-            //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
-            Vidas.ComerArandano();
-            Mochila.QuitarArandano();
+            if (Mochila.comidactiva == 0 && Mochila.arandano > 0)
+            {
+                //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
+                Vidas.ComerArandano();
+                Mochila.QuitarArandano();
+            }
+            else if (Mochila.comidactiva == 1 && Mochila.huevo > 0)
+            {
+                //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
+                Vidas.ComerHuevo();
+                Mochila.QuitarHuevo();
+            }
+            else if (Mochila.comidactiva == 2 && Mochila.pescado > 0)
+            {
+                //Poner que cuando interactua con el pescado en el inventario haga lo siguiente:
+                Vidas.ComerPescao();
+                Mochila.QuitarPescado();
+            }
+
         }
     }
     private void OnCollisionEnter(Collision collision)

@@ -12,13 +12,14 @@ public class Interfaz : MonoBehaviour
     public TMP_Text peznum;
 
     //IMÁGENES
-    public Image aranfoto;
-    public Image huefoto;
-    public Image pezfoto;
+    public GameObject aranfoto;
+    public GameObject huefoto;
+    public GameObject pezfoto;
 
     //SCRIPTS
     public Inventario inventario;
     public Principal_Player jugador;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class Interfaz : MonoBehaviour
     void Update()
     {
         AumentoAlimento();
+        AlimentoSeleccionado();
     }
     public void AumentoAlimento()
     {
@@ -38,7 +40,24 @@ public class Interfaz : MonoBehaviour
     }
     public void AlimentoSeleccionado()
     {
-
+        if (inventario.comidactiva == 0)
+        {
+            aranfoto.SetActive(true);
+            huefoto.SetActive(false);
+            pezfoto.SetActive(false);
+        }
+        else if (inventario.comidactiva == 1)
+        {
+            aranfoto.SetActive(false);
+            huefoto.SetActive(true);
+            pezfoto.SetActive(false);
+        }
+        else if (inventario.comidactiva == 2)
+        {
+            aranfoto.SetActive(false);
+            huefoto.SetActive(false);
+            pezfoto.SetActive(true);
+        }
     }
 
 }
