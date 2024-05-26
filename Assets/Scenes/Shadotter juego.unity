@@ -614,6 +614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 462690003}
   - component: {fileID: 462690002}
+  - component: {fileID: 462690004}
   m_Layer: 0
   m_Name: VIrtual Camera_Seguimiento
   m_TagString: Untagged
@@ -676,6 +677,36 @@ Transform:
   - {fileID: 2007551977}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &462690004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462690001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IgnoreTag: Player
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 2
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0
+  m_Strategy: 1
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!1 &510641674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,6 +1689,10 @@ PrefabInstance:
     - target: {fileID: 7318536515030250698, guid: 83b24af666892b24cb6e13defffbd96f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318536515030250698, guid: 83b24af666892b24cb6e13defffbd96f, type: 3}
+      propertyPath: m_TagString
+      value: Laberinto
       objectReference: {fileID: 0}
     - target: {fileID: 8560060161982802189, guid: 83b24af666892b24cb6e13defffbd96f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2642,7 +2677,7 @@ GameObject:
   - component: {fileID: 1488992662}
   - component: {fileID: 1488992661}
   m_Layer: 0
-  m_Name: Virtual Camera_Giro
+  m_Name: Virtual Camera_Laberinto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2667,9 +2702,9 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1173411734}
   m_Lens:
-    FieldOfView: 60.000004
+    FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -2695,14 +2730,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488992660}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15240358, y: 0.001482477, z: -0.00022860712, w: 0.98831725}
-  m_LocalPosition: {x: 3.9519725, y: 2.1649103, z: -2.6502404}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 489.98, y: 38.41, z: 415.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1738107182}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1529566906
 GameObject:
   m_ObjectHideFlags: 0
@@ -3002,6 +3037,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5869472575213569925, guid: f70193883551d504d887832c88062858, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7834439163254072695, guid: f70193883551d504d887832c88062858, type: 3}
       propertyPath: m_LocalPosition.x
       value: 492
@@ -3107,6 +3146,8 @@ MonoBehaviour:
   arandanocogido: 0
   huevocogido: 0
   pezcogido: 0
+  camaraseguimiento: {fileID: 462690002}
+  camaralaberinto: {fileID: 1488992661}
   Vidas: {fileID: 681091359}
   Mochila: {fileID: 1268743078}
   Casa: {fileID: 2129182791}
@@ -3263,6 +3304,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c6c218aa-be95-477f-af4c-90892544b2c6
     m_ActionName: Player/Eat[/DualSenseGamepadHID/buttonNorth,/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1556484820}
+        m_TargetAssemblyTypeName: Principal_Player, Assembly-CSharp
+        m_MethodName: SaltoCamara
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6a847f4b-d87c-469d-8b43-959b9181329c
+    m_ActionName: Player/ChangeCamera[/DualSenseGamepadHID/rightTrigger,/Keyboard/numpad0]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3622,7 +3679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0, z: -10}
+  m_FollowOffset: {x: 0, y: 15, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -3652,59 +3709,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1738107181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c9beda531928fc40968802117a5d256, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RecenterTarget: 0
-  m_VerticalAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
-    m_InputAxisName: Mouse Y
-    m_InputAxisValue: 0
-    m_InvertInput: 1
-    m_MinValue: -70
-    m_MaxValue: 70
-    m_Wrap: 0
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 1
-      m_RecenteringTime: 2
-      m_LegacyHeadingDefinition: -1
-      m_LegacyVelocityFilterStrength: -1
-  m_VerticalRecentering:
-    m_enabled: 0
-    m_WaitTime: 1
-    m_RecenteringTime: 2
-    m_LegacyHeadingDefinition: -1
-    m_LegacyVelocityFilterStrength: -1
-  m_HorizontalAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
-    m_InputAxisName: Mouse X
-    m_InputAxisValue: 0
-    m_InvertInput: 0
-    m_MinValue: -180
-    m_MaxValue: 180
-    m_Wrap: 1
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 1
-      m_RecenteringTime: 2
-      m_LegacyHeadingDefinition: -1
-      m_LegacyVelocityFilterStrength: -1
-  m_HorizontalRecentering:
-    m_enabled: 0
-    m_WaitTime: 1
-    m_RecenteringTime: 2
-    m_LegacyHeadingDefinition: -1
-    m_LegacyVelocityFilterStrength: -1
-  m_ApplyBeforeBody: 0
 --- !u!1 &1861251451
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,12 +20,18 @@ public class Principal_Player : MonoBehaviour
     float fuerzaSalto = 4f;
     bool alimentoin = false;
     bool puertain = false;
+    bool laberintoin = false;
+    [HideInInspector]
     public bool arandanocogido = false;
+    [HideInInspector]
     public bool huevocogido = false;
+    [HideInInspector]
     public bool pezcogido = false;
 
     //OBJETOS
     GameObject objetoInteractuado;
+    public CinemachineVirtualCamera camaraseguimiento;
+    public CinemachineVirtualCamera camaralaberinto;
 
     //SCRIPTS
     public Vida_Player Vidas;
@@ -69,12 +76,28 @@ public class Principal_Player : MonoBehaviour
             animacion.SetFloat("Velocidad", movAction.y);
         }
         // MODIFICAR EL PARAMETRO VELOCIDAD DEL ANIMATOR
+        
 
     }
     private void Rotaciones()
     {
         Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
         transform.Rotate(0,rotAction.x * gradosrot * Time.deltaTime,0);
+    }
+    public void SaltoCamara(InputAction.CallbackContext context)
+    {
+        //NOTA: "laberintoin == true" sería como poner "laberintoin" solo :)
+        if (context.phase == InputActionPhase.Performed && laberintoin) 
+        {
+            camaralaberinto.Priority = 11;
+            camaraseguimiento.Priority = 10;
+        }
+        else
+        {
+            camaralaberinto.Priority = 10;
+            camaraseguimiento.Priority = 11;
+        }
+        Debug.Log(camaraseguimiento.Priority);
     }
     public void Salto(InputAction.CallbackContext context)
     {
@@ -186,8 +209,12 @@ public class Principal_Player : MonoBehaviour
             objetoInteractuado = trigger.gameObject;
             puertain = true;
         }
+        if (trigger.gameObject.tag == "Laberinto")
+        {
+            objetoInteractuado = trigger.gameObject;
+            laberintoin = true;
+        }
     }
-
     public void OnTriggerExit(Collider trigger)
     {
         if (trigger.gameObject.tag == "Alimento")

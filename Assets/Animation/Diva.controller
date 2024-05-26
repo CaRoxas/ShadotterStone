@@ -45,7 +45,7 @@ BlendTree:
     m_Motion: {fileID: -414807830312781855, guid: c0507fa95f38d2a4eaabd416eafd1a85, type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 2
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
@@ -320,7 +320,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature|Saltar
+  m_Name: Saltar
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
