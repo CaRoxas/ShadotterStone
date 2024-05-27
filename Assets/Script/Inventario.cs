@@ -14,6 +14,8 @@ public class Inventario : MonoBehaviour
     // activa = 2 -> pescado
     public int comidactiva = 0;
 
+    public Interfaz Interfaz;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +76,7 @@ public class Inventario : MonoBehaviour
         {
             comidactiva = 0;
         }
+        Interfaz.AlimentoSeleccionado(comidactiva);
 
     }
     public void ActivoIzquierda()
@@ -83,5 +86,6 @@ public class Inventario : MonoBehaviour
         {
             comidactiva = 2;
         }
+        Interfaz.AlimentoSeleccionado(comidactiva);
     }
 }

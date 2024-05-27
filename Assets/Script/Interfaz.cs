@@ -23,36 +23,39 @@ public class Interfaz : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        aranfoto.SetActive(true);
+        huefoto.SetActive(false);
+        pezfoto.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        AumentoAlimento();
-        AlimentoSeleccionado();
+        
     }
-    public void AumentoAlimento()
+    public void MostrarAlimento()
     {
         aranum.text = "x " + inventario.NumeroArandanos().ToString();
         huenum.text = "x " + inventario.NumeroHuevos().ToString();
         peznum.text = "x " + inventario.NumeroPescados().ToString();
     }
-    public void AlimentoSeleccionado()
+    public void AlimentoSeleccionado(int comidactiva)
     {
-        if (inventario.comidactiva == 0)
+        //la comidactiva actúa como el valor que necesita ser llamando solo en el inventario, sin necesidad de llamarlo aquí como +
+        //"inventario.comidaactiva == X", de esta forma tendría que estar en el update siempre preguntando si está en ese vagón del inventario
+        if (comidactiva  == 0)
         {
             aranfoto.SetActive(true);
             huefoto.SetActive(false);
             pezfoto.SetActive(false);
         }
-        else if (inventario.comidactiva == 1)
+        else if (comidactiva == 1)
         {
             aranfoto.SetActive(false);
             huefoto.SetActive(true);
             pezfoto.SetActive(false);
         }
-        else if (inventario.comidactiva == 2)
+        else if (comidactiva == 2)
         {
             aranfoto.SetActive(false);
             huefoto.SetActive(false);

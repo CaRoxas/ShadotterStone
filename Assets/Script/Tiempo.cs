@@ -6,7 +6,6 @@ public class Tiempo : MonoBehaviour
 {
     //VARIABLES
     float rotasol = 2f;
-    float pasatiempo = 0.5f;
     float timer = 10;
 
     //SCRIPTS

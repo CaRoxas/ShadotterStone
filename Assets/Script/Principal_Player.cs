@@ -37,6 +37,7 @@ public class Principal_Player : MonoBehaviour
     public Vida_Player Vidas;
     public Inventario Mochila;
     public Casita Casa;
+    public Interfaz Interfaz;
 
     void Start()
     {
@@ -75,6 +76,7 @@ public class Principal_Player : MonoBehaviour
             animacion.SetBool("SeMueve", false);
             animacion.SetFloat("Velocidad", movAction.y);
         }
+        Debug.Log(movAction.y);
         // MODIFICAR EL PARAMETRO VELOCIDAD DEL ANIMATOR
         
 
@@ -82,6 +84,7 @@ public class Principal_Player : MonoBehaviour
     private void Rotaciones()
     {
         Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
+        Debug.Log(rotAction);
         transform.Rotate(0,rotAction.x * gradosrot * Time.deltaTime,0);
     }
     public void SaltoCamara(InputAction.CallbackContext context)
@@ -133,10 +136,9 @@ public class Principal_Player : MonoBehaviour
                 Debug.Log("arandanito cogido");
                 Mochila.GuadarArandano();
                 arandanocogido = true;
-            }
+            } 
             animacion.SetTrigger("Recoger");
-            Destroy(objetoInteractuado, animacion.GetCurrentAnimatorStateInfo(0).length);
-            objetoInteractuado = null;
+            Invoke("RetardoRecogerAlimento", animacion.GetCurrentAnimatorStateInfo(0).length);
             alimentoin = false;
         }
         if (context.phase == InputActionPhase.Performed && puertain)
@@ -149,6 +151,12 @@ public class Principal_Player : MonoBehaviour
             Casa.CerrarPuerta();
             puertain = true;
         }
+    }
+    public void RetardoRecogerAlimento()
+    {
+        Destroy(objetoInteractuado);
+        objetoInteractuado = null;
+        Interfaz.MostrarAlimento();
     }
     public void InventarioDerecha (InputAction.CallbackContext context)
     {
