@@ -1456,12 +1456,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 30, y: 0.09992033, z: 30}
-  m_Center: {x: 0, y: 0.00003886409, z: 0}
+  m_Size: {x: 30, y: 0, z: 30}
+  m_Center: {x: 0, y: -0.049921304, z: 0}
 --- !u!1 &773612288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,6 +1951,7 @@ GameObject:
   - component: {fileID: 1008331665}
   - component: {fileID: 1008331664}
   - component: {fileID: 1008331668}
+  - component: {fileID: 1008331669}
   m_Layer: 4
   m_Name: Lago
   m_TagString: Awita
@@ -2060,6 +2061,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 30, y: 0.09992033, z: 30}
   m_Center: {x: 0, y: 0.00003886409, z: 0}
+--- !u!65 &1008331669
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008331663}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 30, y: 7.693738, z: 30}
+  m_Center: {x: 0, y: -7.4336705, z: 0}
 --- !u!1001 &1101447043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3400,6 +3422,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6a847f4b-d87c-469d-8b43-959b9181329c
     m_ActionName: Player/ChangeCamera[/DualSenseGamepadHID/rightTrigger,/Keyboard/numpad0]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1556484820}
+        m_TargetAssemblyTypeName: Principal_Player, Assembly-CSharp
+        m_MethodName: Nadar
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 29937175-9a2c-431e-b169-597bc1d3f5c7
+    m_ActionName: Player/Nadar[/Keyboard/n]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b1f51f02-85d5-4652-a742-cff934196889
+    m_ActionName: Player/Correr[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3617,7 +3659,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

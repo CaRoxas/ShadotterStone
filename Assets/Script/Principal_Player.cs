@@ -21,6 +21,7 @@ public class Principal_Player : MonoBehaviour
     bool alimentoin = false;
     bool puertain = false;
     bool laberintoin = false;
+    bool aguain = false;
     [HideInInspector]
     public bool arandanocogido = false;
     [HideInInspector]
@@ -76,15 +77,14 @@ public class Principal_Player : MonoBehaviour
             animacion.SetBool("SeMueve", false);
             animacion.SetFloat("Velocidad", movAction.y);
         }
-        Debug.Log(movAction.y);
-        // MODIFICAR EL PARAMETRO VELOCIDAD DEL ANIMATOR
-        
+        if (aguain)
+        {
 
+        }
     }
     private void Rotaciones()
     {
         Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
-        Debug.Log(rotAction);
         transform.Rotate(0,rotAction.x * gradosrot * Time.deltaTime,0);
     }
     public void SaltoCamara(InputAction.CallbackContext context)
@@ -199,7 +199,7 @@ public class Principal_Player : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.tag);
+     
         if (collision.gameObject.tag == "Suelo")
         {
             suelo = true;
@@ -207,6 +207,7 @@ public class Principal_Player : MonoBehaviour
     }
     public void OnTriggerEnter(Collider trigger)
     {
+        Debug.Log("eNTER " + trigger.gameObject.tag);
         if (trigger.gameObject.tag == "Alimento")
         {
             objetoInteractuado = trigger.gameObject;
@@ -222,9 +223,16 @@ public class Principal_Player : MonoBehaviour
             objetoInteractuado = trigger.gameObject;
             laberintoin = true;
         }
+        if (trigger.gameObject.tag == "Awita")
+        {
+            objetoInteractuado = trigger.gameObject;
+            aguain = true;
+            //transform.Rotate(90f, 0f, 0);
+        }
     }
     public void OnTriggerExit(Collider trigger)
     {
+        Debug.Log("exit " + trigger.gameObject.tag);
         if (trigger.gameObject.tag == "Alimento")
         {
             alimentoin = false;
@@ -234,6 +242,12 @@ public class Principal_Player : MonoBehaviour
         {
             puertain = false;
             objetoInteractuado = null;
+        }
+        if (trigger.gameObject.tag == "Awita")
+        {
+            objetoInteractuado = null;
+            aguain = false;
+            //transform.Rotate(-90f, 0f, 0);
         }
     }
 }
