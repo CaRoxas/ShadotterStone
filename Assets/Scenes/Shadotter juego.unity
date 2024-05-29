@@ -703,7 +703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462690001}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -3e-45, y: -1e-45, z: -0, w: 1}
   m_LocalPosition: {x: 489.98, y: 23.41, z: 409.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1892,7 +1892,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -3e-45, y: -1e-45, z: 0, w: 1}
   m_LocalPosition: {x: 489.98, y: 23.41, z: 409.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3199,6 +3199,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5869472575213569925, guid: f70193883551d504d887832c88062858, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1556484823}
+    - targetCorrespondingSourceObject: {fileID: 5869472575213569925, guid: f70193883551d504d887832c88062858, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1556484826}
   m_SourcePrefab: {fileID: 100100000, guid: f70193883551d504d887832c88062858, type: 3}
 --- !u!1 &1556484818 stripped
 GameObject:
@@ -3213,8 +3216,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556484818}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 4
+  m_Drag: 3
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -3468,6 +3471,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1556484826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556484818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9395d307f49b42b4ab614ea06d6a7e8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bajoaguadrag: 3
+  BajoaguaAngulardrag: 1
+  Airedrag: 0
+  Aireangulardrag: 0.05
+  fuerzaFlotacion: 15
+  alturaOlas: 0
 --- !u!1 &1586308176
 GameObject:
   m_ObjectHideFlags: 0

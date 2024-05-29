@@ -2,17 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Flotar : MonoBehaviour
 {
-    public Rigidbody rb;
-    public float profundidadsumergida = 1f;
-    public float cantidaddesplazada = 3f;
+    //Variables
+    public float Bajoaguadrag = 3f;
+    public float BajoaguaAngulardrag = 1f;
+    public float Airedrag = 0f;
+    public float Aireangulardrag = 0.05f;
+    public float fuerzaFlotacion = 15f;
+    public float alturaOlas = 0f;
+
+    bool underwater;
+
+    //Componentes
+    Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     private void FixedUpdate()
     {
-        if (transform.position.y < 15)
+        float diferencia = transform.position.y - alturaOlas;
+        if (diferencia < 14)
         {
-            float multiplicadordesplazamiento = Mathf.Clamp01(-transform.position.y / profundidadsumergida) * cantidaddesplazada;
-            rb.AddForce(new Vector3(0f, Mathf.Abs(Physics.gravity.y) * multiplicadordesplazamiento, 0f), ForceMode.Acceleration);
-        } 
+            rb.AddForceAtPosition(Vector3.up * fuerzaFlotacion * Mathf.Abs(diferencia), transform.position, ForceMode.Force);
+            if (!underwater)
+            {
+                underwater = true;
+            }
+        }
+        else if (underwater)
+        {
+            underwater = false;
+        }
     }
+
+    void SwitchState(bool estaBajoagua)
+    {
+        if (estaBajoagua)
+        {
+            rb.drag = Bajoaguadrag;
+            rb.angularDrag = BajoaguaAngulardrag;
+        }
+        else
+        {
+            rb.drag = Airedrag;
+            rb.angularDrag = Aireangulardrag;
+        }
+    }
+
+
+
+    //SHOUTOUT V.A. - Indie Dev
 }

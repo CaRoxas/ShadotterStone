@@ -28,6 +28,7 @@ public class Principal_Player : MonoBehaviour
     public bool huevocogido = false;
     [HideInInspector]
     public bool pezcogido = false;
+    Quaternion rotaciones;
 
     //OBJETOS
     GameObject objetoInteractuado;
@@ -227,6 +228,7 @@ public class Principal_Player : MonoBehaviour
         {
             objetoInteractuado = trigger.gameObject;
             aguain = true;
+            rotaciones = Quaternion.Euler(this.gameObject.transform.eulerAngles.x + 90, this.gameObject.transform.eulerAngles.y, this.gameObject.transform.eulerAngles.z);
             //transform.Rotate(90f, 0f, 0);
         }
     }
