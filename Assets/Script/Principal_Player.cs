@@ -17,7 +17,8 @@ public class Principal_Player : MonoBehaviour
     bool suelo = true;
     float velocidad = 4f;
     float gradosrot = 45f;
-    float fuerzaSalto = 4f;
+    public float fuerzaSalto = 45f;
+    public float bajadaSalto = 60f;
     bool alimentoin = false;
     bool puertain = false;
     bool laberintoin = false;
@@ -68,7 +69,7 @@ public class Principal_Player : MonoBehaviour
         Vector3 movimiento = adelante + lado;
         movimiento.y = rb.velocity.y;
         rb.velocity = movimiento;
-        if (movAction.y > 0 || movAction.x >0)
+        if ((movAction.y > 0 || movAction.x >0) && !aguain)
         {
             animacion.SetBool("SeMueve", true);
             animacion.SetFloat("Velocidad", movAction.y);
@@ -78,9 +79,14 @@ public class Principal_Player : MonoBehaviour
             animacion.SetBool("SeMueve", false);
             animacion.SetFloat("Velocidad", movAction.y);
         }
-        if (aguain)
+        if ((movAction.y > 0 || movAction.x > 0) && aguain)
         {
-
+            //adelante = movAction.y * velocidad * transform.up;
+            animacion.SetBool("Nadar", true);
+        }
+        else
+        {
+            animacion.SetBool("Nadar", false);
         }
     }
     private void Rotaciones()
@@ -114,6 +120,11 @@ public class Principal_Player : MonoBehaviour
         else
         {
             animacion.SetBool("Saltar", false);
+        }
+        float altura = transform.position.z;
+        if (altura > 21)
+        {
+            rb.AddForce(Vector3.down * bajadaSalto, ForceMode.Acceleration);
         }
     }
     public void AccionesCogerAbrir(InputAction.CallbackContext context)
@@ -228,8 +239,8 @@ public class Principal_Player : MonoBehaviour
         {
             objetoInteractuado = trigger.gameObject;
             aguain = true;
-            rotaciones = Quaternion.Euler(this.gameObject.transform.eulerAngles.x + 90, this.gameObject.transform.eulerAngles.y, this.gameObject.transform.eulerAngles.z);
-            //transform.Rotate(90f, 0f, 0);
+            //rotaciones = Quaternion.Euler(this.gameObject.transform.eulerAngles.x + 90, this.gameObject.transform.eulerAngles.y, this.gameObject.transform.eulerAngles.z);
+            gameObject.transform.Rotate(45f, 0f, 0f);
         }
     }
     public void OnTriggerExit(Collider trigger)
@@ -249,7 +260,7 @@ public class Principal_Player : MonoBehaviour
         {
             objetoInteractuado = null;
             aguain = false;
-            //transform.Rotate(-90f, 0f, 0);
+            transform.Rotate(-45f, 0f, 0f);
         }
     }
 }
