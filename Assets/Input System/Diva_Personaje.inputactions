@@ -79,12 +79,12 @@
                 },
                 {
                     "name": "Nadar",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "29937175-9a2c-431e-b169-597bc1d3f5c7",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Correr",
@@ -386,13 +386,79 @@
                 {
                     "name": "",
                     "id": "25ac85c0-9de6-4a4d-a869-59fd56bdacae",
-                    "path": "<Keyboard>/n",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Nadar",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Flechas",
+                    "id": "ac887c41-0dd3-4a68-8bfc-4181739decae",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Nadar",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "997a99ea-603d-47f0-b2d6-be4d6ead82d3",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Nadar",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "0fa9c02e-bb4b-4660-ba81-4b5ee55c0fa5",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Nadar",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "AD",
+                    "id": "9a9601d6-e51e-4cbe-b72b-c05bd0f6f20c",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Nadar",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "3066549f-15de-42c7-98bd-a1ddcdfbf542",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Nadar",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "51ab306d-697d-4511-bf99-4b4e895e6de0",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Nadar",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",

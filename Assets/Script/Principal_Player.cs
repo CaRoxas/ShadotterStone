@@ -23,6 +23,7 @@ public class Principal_Player : MonoBehaviour
     bool puertain = false;
     bool laberintoin = false;
     bool aguain = false;
+    bool cansadita = false;
     [HideInInspector]
     public bool arandanocogido = false;
     [HideInInspector]
@@ -49,9 +50,9 @@ public class Principal_Player : MonoBehaviour
 
     void Start()
     {
-       rb = GetComponent<Rigidbody>();
-       playerinput = GetComponent<PlayerInput>();
-       animacion = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+        playerinput = GetComponent<PlayerInput>();
+        animacion = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -59,11 +60,6 @@ public class Principal_Player : MonoBehaviour
     {
         Movimiento();
         Rotaciones();
-        //var step = speed * Time.deltaTime;
-        //if (aguain)
-        //{
-        //   transform.rotation = Quaternion.RotateTowards(transform.rotation, objetivo.rotation, step); 
-        //}
     }
     void Movimiento()
     {
@@ -74,13 +70,14 @@ public class Principal_Player : MonoBehaviour
         NOTA: TRANSFORM.FORWARD = ADELANTE EN LOCAL, FORWARD (SIN TRANSAFORM) = ADELANTE EN GLOBAL (EL MUNDO)*/
 
         Vector2 movAction = playerinput.actions["Move"].ReadValue<Vector2>();
-        Vector3 adelante = movAction.y * velocidad * transform.forward;
-        Vector3 lado = movAction.x * velocidad * transform.right;
-        Vector3 movimiento = adelante + lado;
-        movimiento.y = rb.velocity.y;
-        rb.velocity = movimiento;
-        if ((movAction.y > 0 || movAction.x >0) && !aguain)
+      
+        if ((movAction.y > 0 || movAction.x >0) && !aguain && !cansadita)
         {
+            Vector3 adelante = movAction.y * velocidad * transform.forward;
+            Vector3 lado = movAction.x * velocidad * transform.right;
+            Vector3 movimiento = adelante + lado;
+            movimiento.y = rb.velocity.y;
+            rb.velocity = movimiento;
             animacion.SetBool("SeMueve", true);
             animacion.SetFloat("Velocidad", movAction.y);
         }
@@ -92,28 +89,42 @@ public class Principal_Player : MonoBehaviour
         //ESTÁ DENTRO DEL AGUA AKA A NADAR
         if ((movAction.y > 0 || movAction.x > 0) && aguain)
         {
-            //adelante = movAction.y * velocidad * transform.up;
+            Vector3 adelante = movAction.y * velocidad * transform.up;
+            Vector3 lado = movAction.x * velocidad * transform.right;
+            Vector3 movimiento = adelante + lado;
+            movimiento.y = rb.velocity.y;
+            rb.velocity = movimiento;
             animacion.SetBool("Nada", true);
+            camaralaberinto.Priority = 11;
+            camaraseguimiento.Priority = 10;
         }
         else if (aguain == false)
         {
             animacion.SetBool("Nada", false);
+            camaralaberinto.Priority = 10;
+            camaraseguimiento.Priority = 11;
+
         }
         //ESTÁ CANSADO AKA SE SIENTA
         if (Vidas.vidanow <= 0)
         {
             animacion.SetBool("SeDetiene",true);
-            Debug.Log(Vidas.vidanow);
+            cansadita = true;
         }
         else
         {
             animacion.SetBool("SeDetiene", false);
+            cansadita = false;
         }
     }
     private void Rotaciones()
     {
-        Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
-        transform.Rotate(0,rotAction.x * gradosrot * Time.deltaTime,0);
+        if (!aguain)
+        {
+            Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
+            transform.Rotate(0,rotAction.x * gradosrot * Time.deltaTime,0);
+        }
+        
     }
     public void SaltoCamara(InputAction.CallbackContext context)
     {
@@ -232,10 +243,13 @@ public class Principal_Player : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-     
         if (collision.gameObject.tag == "Suelo")
         {
             suelo = true;
+        }
+        if (collision.gameObject.tag == "Piedra")
+        {
+            animacion.SetBool("Gana", true);
         }
     }
     public void OnTriggerEnter(Collider trigger)
@@ -260,8 +274,7 @@ public class Principal_Player : MonoBehaviour
         {
             objetoInteractuado = trigger.gameObject;
             aguain = true;
-            //rotaciones = Quaternion.Euler(this.gameObject.transform.eulerAngles.x + 90, this.gameObject.transform.eulerAngles.y, this.gameObject.transform.eulerAngles.z);
-            //gameObject.transform.Rotate(45f, 0f, 0f);
+            gameObject.transform.Rotate(45f, 0f, 0f);
         }
     }
     public void OnTriggerExit(Collider trigger)
@@ -281,7 +294,7 @@ public class Principal_Player : MonoBehaviour
         {
             objetoInteractuado = null;
             aguain = false;
-            //transform.Rotate(-45f, 0f, 0f);
+            transform.Rotate(-45f, 0f, 0f);
         }
     }
 }
