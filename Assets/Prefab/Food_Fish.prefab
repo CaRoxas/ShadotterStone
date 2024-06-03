@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2216184167992057348}
   - component: {fileID: 174172701270069667}
   - component: {fileID: 5600297365580466197}
+  - component: {fileID: 6268811654214406343}
   m_Layer: 0
   m_Name: Food_Fish
   m_TagString: Alimento
@@ -63,6 +64,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 13, y: 2, z: 20}
   m_Center: {x: 0.61535597, y: 0.44157693, z: 0.05159775}
+--- !u!95 &6268811654214406343
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6885112180110138433}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce14eee435d5bf74290387dbfc4a2eb3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5888747769555359158
 PrefabInstance:
   m_ObjectHideFlags: 0

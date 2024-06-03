@@ -72,7 +72,7 @@ public class Spawn_comida : MonoBehaviour
     {
         int posx = Random.Range(190, 500);
         int posz = Random.Range(440, 890);
-        empezar = new Vector3(posx, 20.12f, posz);
+        empezar = new Vector3(posx, 20.5f, posz);
         GameObject comidados = GameObject.Instantiate(huevillos, empezar, Quaternion.identity);
     }
     void SpawnPez()

@@ -2778,7 +2778,7 @@ GameObject:
   - component: {fileID: 1488992662}
   - component: {fileID: 1488992661}
   m_Layer: 0
-  m_Name: Virtual Camera_Laberinto
+  m_Name: Virtual Camera_Superior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

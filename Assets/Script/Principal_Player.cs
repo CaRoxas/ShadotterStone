@@ -29,7 +29,12 @@ public class Principal_Player : MonoBehaviour
     public bool huevocogido = false;
     [HideInInspector]
     public bool pezcogido = false;
-    Quaternion rotaciones;
+
+
+    //VARIABLES DEPENDIENTES
+    //Quaternion rotaciones;
+    //public Transform objetivo;
+    //public float speed = 1.0f;
 
     //OBJETOS
     GameObject objetoInteractuado;
@@ -54,6 +59,11 @@ public class Principal_Player : MonoBehaviour
     {
         Movimiento();
         Rotaciones();
+        //var step = speed * Time.deltaTime;
+        //if (aguain)
+        //{
+        //   transform.rotation = Quaternion.RotateTowards(transform.rotation, objetivo.rotation, step); 
+        //}
     }
     void Movimiento()
     {
@@ -79,14 +89,25 @@ public class Principal_Player : MonoBehaviour
             animacion.SetBool("SeMueve", false);
             animacion.SetFloat("Velocidad", movAction.y);
         }
+        //ESTÁ DENTRO DEL AGUA AKA A NADAR
         if ((movAction.y > 0 || movAction.x > 0) && aguain)
         {
             //adelante = movAction.y * velocidad * transform.up;
-            animacion.SetBool("Nadar", true);
+            animacion.SetBool("Nada", true);
+        }
+        else if (aguain == false)
+        {
+            animacion.SetBool("Nada", false);
+        }
+        //ESTÁ CANSADO AKA SE SIENTA
+        if (Vidas.vidanow <= 0)
+        {
+            animacion.SetBool("SeDetiene",true);
+            Debug.Log(Vidas.vidanow);
         }
         else
         {
-            animacion.SetBool("Nadar", false);
+            animacion.SetBool("SeDetiene", false);
         }
     }
     private void Rotaciones()
@@ -240,7 +261,7 @@ public class Principal_Player : MonoBehaviour
             objetoInteractuado = trigger.gameObject;
             aguain = true;
             //rotaciones = Quaternion.Euler(this.gameObject.transform.eulerAngles.x + 90, this.gameObject.transform.eulerAngles.y, this.gameObject.transform.eulerAngles.z);
-            gameObject.transform.Rotate(45f, 0f, 0f);
+            //gameObject.transform.Rotate(45f, 0f, 0f);
         }
     }
     public void OnTriggerExit(Collider trigger)
@@ -260,7 +281,7 @@ public class Principal_Player : MonoBehaviour
         {
             objetoInteractuado = null;
             aguain = false;
-            transform.Rotate(-45f, 0f, 0f);
+            //transform.Rotate(-45f, 0f, 0f);
         }
     }
 }
