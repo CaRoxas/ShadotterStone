@@ -18,12 +18,13 @@ public class Principal_Player : MonoBehaviour
     float velocidad = 4f;
     float gradosrot = 45f;
     public float fuerzaSalto = 45f;
-    public float bajadaSalto = 60f;
+    public float bajadaSalto = 70f;
     bool alimentoin = false;
     bool puertain = false;
     bool laberintoin = false;
     bool cansadita = false;
     bool empuja = false;
+    float movx, movy;
     [HideInInspector]
     public bool aguain = false;
     [HideInInspector]
@@ -58,6 +59,8 @@ public class Principal_Player : MonoBehaviour
         Movimiento();
         Rotaciones();
     }
+
+    //Movimiento que hace el personaje
     void Movimiento()
     {
         /*/ESTA ES LA VERSIÓN QUE SE MUEVA NORMAL EN X e Y
@@ -68,7 +71,7 @@ public class Principal_Player : MonoBehaviour
 
         Vector2 movAction = playerinput.actions["Move"].ReadValue<Vector2>();
       
-        if ((movAction.y > 0 || movAction.x >0) && !aguain && !cansadita)
+        if ((movAction.y != 0 || movAction.x != 0) && !aguain && !cansadita)
         {
             Vector3 adelante = movAction.y * velocidad * transform.forward;
             Vector3 lado = movAction.x * velocidad * transform.right;
@@ -84,13 +87,13 @@ public class Principal_Player : MonoBehaviour
             animacion.SetFloat("Velocidad", movAction.y);
         }
         //ESTÁ DENTRO DEL AGUA AKA A NADAR
-        if ((movAction.y > 0 || movAction.x > 0) && aguain)
+        if ((movAction.y != 0 || movAction.x != 0) && aguain)
         {
-            /*/Vector3 adelante = movAction.y * velocidad * transform.up;
+            Vector3 adelante = movAction.y * velocidad * transform.up;
             Vector3 lado = movAction.x * velocidad * transform.right;
             Vector3 movimiento = adelante + lado;
             movimiento.y = rb.velocity.y;
-            rb.velocity = movimiento;*/
+            rb.velocity = movimiento;
             animacion.SetBool("Nada", true);
             camaralaberinto.Priority = 11;
             camaraseguimiento.Priority = 10;
@@ -114,6 +117,8 @@ public class Principal_Player : MonoBehaviour
             cansadita = false;
         }
     }
+
+    //Rotaciones que hace la cámara en el eje y para su desplazamiento
     private void Rotaciones()
     {
         if (!aguain)
@@ -121,8 +126,15 @@ public class Principal_Player : MonoBehaviour
             Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
             transform.Rotate(0,rotAction.x * gradosrot * Time.deltaTime,0);
         }
+        else
+        {
+            Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
+            transform.Rotate(0f, 0f, rotAction.x * gradosrot * Time.deltaTime);
+        }
         
     }
+
+    //Cambio de la cámara al entrar en el agua y el laberinto para que se ponga arriba del personaje y tenga una`perspectiva mejor
     public void SaltoCamara(InputAction.CallbackContext context)
     {
         //NOTA: "laberintoin == true" sería como poner "laberintoin" solo :)
@@ -130,6 +142,8 @@ public class Principal_Player : MonoBehaviour
         {
             camaralaberinto.Priority = 11;
             camaraseguimiento.Priority = 10;
+            //movx = Input.GetAxis("Horizontal");
+            //movy = Input.GetAxis("Vetical");
         }
         else
         {
@@ -137,11 +151,12 @@ public class Principal_Player : MonoBehaviour
             camaraseguimiento.Priority = 11;
         }
     }
+
+    //Añadir fuerza de salto para su desplazamiento en vertical
     public void Salto(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && suelo)
         {
-            rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
             suelo = false;
             animacion.SetBool("Saltar", true);
         }
@@ -149,12 +164,21 @@ public class Principal_Player : MonoBehaviour
         {
             animacion.SetBool("Saltar", false);
         }
-        float altura = transform.position.z;
-        if (altura > 21)
-        {
-            rb.AddForce(Vector3.down * bajadaSalto, ForceMode.Acceleration);
-        }
     }
+
+    //Llamamos cuando termine la anticipación en la animación un evento para que en ese momento haga el salto y no antes
+    public void SaltoAnimacion()
+    {
+        rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
+    }
+
+    //Llamamos en el final de la animación un evento para que en ese momento haga añada la fuerza de peso hacia abajo
+    public void BajadaTierra()
+    {
+        rb.AddForce(-Vector3.up * bajadaSalto, ForceMode.Impulse);
+    }
+
+    //Hacemos las acciones de coger los alimentos y guardarlos en el inventario también abrir la puerta de la casa
     public void AccionesCogerAbrir(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && alimentoin)
@@ -192,12 +216,16 @@ public class Principal_Player : MonoBehaviour
             puertain = true;
         }
     }
+
+    //Añadimos un retardo en la contabilización del alimento y es su destrucción, solo cuando ha hecho la animación se muestra el alimento en el inventario y se destruye
     public void RetardoRecogerAlimento()
     {
         Destroy(objetoInteractuado);
         objetoInteractuado = null;
         Interfaz.MostrarAlimento();
     }
+
+    //Hacemos que traslade por botones la elección de los alimentos en el inventario hacia la derecha y que vuelva a la izquierda
     public void InventarioDerecha (InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -205,6 +233,8 @@ public class Principal_Player : MonoBehaviour
             Mochila.ActivoDerecha();
         }
     }
+
+    //Hacemos que traslade por botones la elección de los alimentos en el inventario hacia la derecha y que vuelva a la derecha
     public void InventarioIzquierda (InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -212,6 +242,8 @@ public class Principal_Player : MonoBehaviour
             Mochila.ActivoIzquierda();
         }
     }
+
+    //Acción de comer según esté en un alimento de la interfaz seleccionado y si su número es mayor a 1, es decir haya algo en el alimento seleccionado
     public void Comer(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -234,9 +266,10 @@ public class Principal_Player : MonoBehaviour
                 Vidas.ComerPescao();
                 Mochila.QuitarPescado();
             }
-
         }
     }
+
+    //Colisiones de entrada
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Suelo")
@@ -254,6 +287,8 @@ public class Principal_Player : MonoBehaviour
             objetoInteractuado = collision.gameObject;
         }
     }
+
+    //Colisiones de salida
     public void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Obstáculos")
@@ -263,6 +298,8 @@ public class Principal_Player : MonoBehaviour
             objetoInteractuado = null;
         }
     }
+
+    //Triggers de entrada
     public void OnTriggerEnter(Collider trigger)
     {
         //Debug.Log("eNTER " + trigger.gameObject.tag);
@@ -288,6 +325,8 @@ public class Principal_Player : MonoBehaviour
             gameObject.transform.Rotate(45f, 0f, 0f);
         }*/
     }
+
+    //Triggers de salida
     public void OnTriggerExit(Collider trigger)
     {
         //Debug.Log("exit " + trigger.gameObject.tag);
