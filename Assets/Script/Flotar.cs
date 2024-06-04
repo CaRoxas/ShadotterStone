@@ -11,7 +11,12 @@ public class Flotar : MonoBehaviour
     public float Airedrag = 0f;
     public float Aireangulardrag = 0.05f;
     public float fuerzaFlotacion = 15f;
-    public float alturaOlas = 0f;
+    float alturaOlas = 0f;
+    public float privalturaOlas
+    {
+         get{ return alturaOlas; }
+         set{ alturaOlas = value; }
+    }
 
     bool underwater;
 

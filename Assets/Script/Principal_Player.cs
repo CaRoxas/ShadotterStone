@@ -86,7 +86,7 @@ public class Principal_Player : MonoBehaviour
             animacion.SetBool("SeMueve", false);
             animacion.SetFloat("Velocidad", movAction.y);
         }
-        //ESTÁ DENTRO DEL AGUA AKA A NADAR
+        //ESTÁ DENTRO DEL AGUA
         if ((movAction.y != 0 || movAction.x != 0) && aguain)
         {
             Vector3 adelante = movAction.y * velocidad * transform.up;
@@ -105,7 +105,7 @@ public class Principal_Player : MonoBehaviour
             camaraseguimiento.Priority = 11;
 
         }
-        //ESTÁ CANSADO AKA SE SIENTA
+        //ESTÁ CANSADO
         if (Vidas.vidanow <= 0)
         {
             animacion.SetBool("SeDetiene",true);

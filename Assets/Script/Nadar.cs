@@ -7,6 +7,7 @@ public class Nadar : MonoBehaviour
 {
     //SCRIPTS
     public Principal_Player jugador;
+    public Flotar flotacion;
 
     //GAMEOBJECT
     public GameObject Diva;
@@ -28,6 +29,21 @@ public class Nadar : MonoBehaviour
         {
             jugador.aguain = true;
             Diva.transform.Rotate(90f, 0f, 0f);
+            //flotacion.privalturaOlas = 3.5f;
+        }
+    }
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Suelo")
+        {
+            jugador.aguain = false;
+        }
+    }
+    public void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Suelo")
+        {
+            jugador.aguain = true;
         }
     }
     public void OnTriggerExit(Collider trigger)
@@ -37,6 +53,7 @@ public class Nadar : MonoBehaviour
         {
             jugador.aguain = false;
             Diva.transform.Rotate(-90f, 0f, 0f);
+            //flotacion.privalturaOlas = 0f;
         }
     }
 }
