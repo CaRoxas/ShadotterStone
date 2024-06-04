@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class Vida_Player : MonoBehaviour
 {
     //VARIABLES
-    public float vidamax = 5;
-    public float vidanow = 5;
+    public float vidamax = 50;
+    public float vidanow = 50;
 
     //OBJETOS
     public GameObject Pescado;

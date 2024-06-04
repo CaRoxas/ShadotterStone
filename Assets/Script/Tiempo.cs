@@ -6,7 +6,7 @@ public class Tiempo : MonoBehaviour
 {
     //VARIABLES
     float rotasol = 2f;
-    float timer = 10;
+    float timer = 50;
 
     //SCRIPTS
     public Vida_Player vidilla;

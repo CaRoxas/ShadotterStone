@@ -9,6 +9,7 @@ TagManager:
   - Awita
   - Puerta
   - Laberinto
+  - "Obst\xE1culos"
   layers:
   - Default
   - TransparentFX

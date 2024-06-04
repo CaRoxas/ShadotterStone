@@ -22,8 +22,10 @@ public class Principal_Player : MonoBehaviour
     bool alimentoin = false;
     bool puertain = false;
     bool laberintoin = false;
-    bool aguain = false;
     bool cansadita = false;
+    bool empuja = false;
+    [HideInInspector]
+    public bool aguain = false;
     [HideInInspector]
     public bool arandanocogido = false;
     [HideInInspector]
@@ -31,11 +33,6 @@ public class Principal_Player : MonoBehaviour
     [HideInInspector]
     public bool pezcogido = false;
 
-
-    //VARIABLES DEPENDIENTES
-    //Quaternion rotaciones;
-    //public Transform objetivo;
-    //public float speed = 1.0f;
 
     //OBJETOS
     GameObject objetoInteractuado;
@@ -89,16 +86,16 @@ public class Principal_Player : MonoBehaviour
         //ESTÁ DENTRO DEL AGUA AKA A NADAR
         if ((movAction.y > 0 || movAction.x > 0) && aguain)
         {
-            Vector3 adelante = movAction.y * velocidad * transform.up;
+            /*/Vector3 adelante = movAction.y * velocidad * transform.up;
             Vector3 lado = movAction.x * velocidad * transform.right;
             Vector3 movimiento = adelante + lado;
             movimiento.y = rb.velocity.y;
-            rb.velocity = movimiento;
+            rb.velocity = movimiento;*/
             animacion.SetBool("Nada", true);
             camaralaberinto.Priority = 11;
             camaraseguimiento.Priority = 10;
         }
-        else if (aguain == false)
+        else if (aguain == false && laberintoin == false)
         {
             animacion.SetBool("Nada", false);
             camaralaberinto.Priority = 10;
@@ -139,7 +136,6 @@ public class Principal_Player : MonoBehaviour
             camaralaberinto.Priority = 10;
             camaraseguimiento.Priority = 11;
         }
-        Debug.Log(camaraseguimiento.Priority);
     }
     public void Salto(InputAction.CallbackContext context)
     {
@@ -251,10 +247,25 @@ public class Principal_Player : MonoBehaviour
         {
             animacion.SetBool("Gana", true);
         }
+        if (collision.gameObject.tag == "Obstáculos")
+        {
+            empuja = true;
+            animacion.SetBool("Empuja", true);
+            objetoInteractuado = collision.gameObject;
+        }
+    }
+    public void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Obstáculos")
+        {
+            empuja = false;
+            animacion.SetBool("Empuja", false);
+            objetoInteractuado = null;
+        }
     }
     public void OnTriggerEnter(Collider trigger)
     {
-        Debug.Log("eNTER " + trigger.gameObject.tag);
+        //Debug.Log("eNTER " + trigger.gameObject.tag);
         if (trigger.gameObject.tag == "Alimento")
         {
             objetoInteractuado = trigger.gameObject;
@@ -270,16 +281,16 @@ public class Principal_Player : MonoBehaviour
             objetoInteractuado = trigger.gameObject;
             laberintoin = true;
         }
-        if (trigger.gameObject.tag == "Awita")
+        /*/if (trigger.gameObject.tag == "Awita")
         {
             objetoInteractuado = trigger.gameObject;
             aguain = true;
             gameObject.transform.Rotate(45f, 0f, 0f);
-        }
+        }*/
     }
     public void OnTriggerExit(Collider trigger)
     {
-        Debug.Log("exit " + trigger.gameObject.tag);
+        //Debug.Log("exit " + trigger.gameObject.tag);
         if (trigger.gameObject.tag == "Alimento")
         {
             alimentoin = false;
@@ -290,11 +301,16 @@ public class Principal_Player : MonoBehaviour
             puertain = false;
             objetoInteractuado = null;
         }
-        if (trigger.gameObject.tag == "Awita")
+        if (trigger.gameObject.tag == "Laberinto")
+        {
+            objetoInteractuado = null;
+            laberintoin = false;
+        }
+        /*/if (trigger.gameObject.tag == "Awita")
         {
             objetoInteractuado = null;
             aguain = false;
             transform.Rotate(-45f, 0f, 0f);
-        }
+        }*/
     }
 }
