@@ -93,7 +93,7 @@ public class Principal_Player : MonoBehaviour
         {
             Vector3 adelante = movAction.y * velocidad * transform.up;
             Vector3 lado = movAction.x * velocidad * transform.right;
-            transform.Rotate(0,0, movAction.x * gradosrot * Time.deltaTime);
+            transform.Rotate(0,0, -movAction.x * gradosrot * Time.deltaTime);
             Vector3 movimiento = adelante + lado;
             movimiento.y = rb.velocity.y;
             rb.velocity = movimiento;
