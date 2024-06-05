@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class Principal_Player : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class Principal_Player : MonoBehaviour
     GameObject objetoInteractuado;
     public CinemachineVirtualCamera camaraseguimiento;
     public CinemachineVirtualCamera camaralaberinto;
+    public CinemachineVirtualCamera camaranadar;
 
     //SCRIPTS
     public Vida_Player Vidas;
@@ -91,16 +93,19 @@ public class Principal_Player : MonoBehaviour
         {
             Vector3 adelante = movAction.y * velocidad * transform.up;
             Vector3 lado = movAction.x * velocidad * transform.right;
+            transform.Rotate(0,0, movAction.x * gradosrot * Time.deltaTime);
             Vector3 movimiento = adelante + lado;
             movimiento.y = rb.velocity.y;
             rb.velocity = movimiento;
             animacion.SetBool("Nada", true);
-            camaralaberinto.Priority = 11;
+            camaranadar.Priority = 11;
+            camaralaberinto.Priority = 10;
             camaraseguimiento.Priority = 10;
         }
         else if (aguain == false && laberintoin == false)
         {
             animacion.SetBool("Nada", false);
+            camaranadar.Priority = 10;
             camaralaberinto.Priority = 10;
             camaraseguimiento.Priority = 11;
 
@@ -118,6 +123,17 @@ public class Principal_Player : MonoBehaviour
         }
     }
 
+    public void Correr(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            velocidad *= 2;
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            velocidad /= 2;
+        }
+    }
     //Rotaciones que hace la cámara en el eje y para su desplazamiento
     private void Rotaciones()
     {
@@ -126,12 +142,6 @@ public class Principal_Player : MonoBehaviour
             Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
             transform.Rotate(0,rotAction.x * gradosrot * Time.deltaTime,0);
         }
-        else
-        {
-            Vector2 rotAction = playerinput.actions["TurnAround"].ReadValue<Vector2>();
-            transform.Rotate(0f, 0f, rotAction.x * gradosrot * Time.deltaTime);
-        }
-        
     }
 
     //Cambio de la cámara al entrar en el agua y el laberinto para que se ponga arriba del personaje y tenga una`perspectiva mejor
@@ -175,7 +185,7 @@ public class Principal_Player : MonoBehaviour
     //Llamamos en el final de la animación un evento para que en ese momento haga añada la fuerza de peso hacia abajo
     public void BajadaTierra()
     {
-        rb.AddForce(-Vector3.up * bajadaSalto, ForceMode.Impulse);
+        rb.AddForce(Vector3.down * bajadaSalto, ForceMode.Impulse);
     }
 
     //Hacemos las acciones de coger los alimentos y guardarlos en el inventario también abrir la puerta de la casa
@@ -318,12 +328,6 @@ public class Principal_Player : MonoBehaviour
             objetoInteractuado = trigger.gameObject;
             laberintoin = true;
         }
-        /*/if (trigger.gameObject.tag == "Awita")
-        {
-            objetoInteractuado = trigger.gameObject;
-            aguain = true;
-            gameObject.transform.Rotate(45f, 0f, 0f);
-        }*/
     }
 
     //Triggers de salida
@@ -345,11 +349,5 @@ public class Principal_Player : MonoBehaviour
             objetoInteractuado = null;
             laberintoin = false;
         }
-        /*/if (trigger.gameObject.tag == "Awita")
-        {
-            objetoInteractuado = null;
-            aguain = false;
-            transform.Rotate(-45f, 0f, 0f);
-        }*/
     }
 }

@@ -5,22 +5,22 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Flotar : MonoBehaviour
 {
-    //Variables
+    //VARIABLES
     public float Bajoaguadrag = 3f;
     public float BajoaguaAngulardrag = 1f;
     public float Airedrag = 0f;
     public float Aireangulardrag = 0.05f;
     public float fuerzaFlotacion = 15f;
     float alturaOlas = 0f;
-    public float privalturaOlas
+    //Esto llama al alturaOlas privado para que sea "público" sin poner como referencia público porque se colapsa y nunca lo ejecuta el cambio de float
+    public float publalturaOlas
     {
          get{ return alturaOlas; }
          set{ alturaOlas = value; }
     }
-
     bool underwater;
 
-    //Componentes
+    //COMPONENTES
     Rigidbody rb;
 
     private void Start()

@@ -29,7 +29,8 @@ public class Nadar : MonoBehaviour
         {
             jugador.aguain = true;
             Diva.transform.Rotate(90f, 0f, 0f);
-            //flotacion.privalturaOlas = 3.5f;
+            flotacion.publalturaOlas = 3.2f;
+            Debug.Log("Dentro" + flotacion.publalturaOlas);
         }
     }
     public void OnCollisionEnter(Collision collision)
@@ -53,7 +54,8 @@ public class Nadar : MonoBehaviour
         {
             jugador.aguain = false;
             Diva.transform.Rotate(-90f, 0f, 0f);
-            //flotacion.privalturaOlas = 0f;
+            flotacion.publalturaOlas = 0f;
+            Debug.Log("Fuera" + flotacion.publalturaOlas);
         }
     }
 }
