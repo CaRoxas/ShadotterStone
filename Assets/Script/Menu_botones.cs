@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Menu_botones : MonoBehaviour
 {
+    public GameObject creditos;
+    public GameObject controles;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,10 +28,10 @@ public class Menu_botones : MonoBehaviour
     }
     public void BotonControles()
     {
-
+        controles.SetActive(true);
     }
     public void BotonCreditos()
     {
-
+        creditos.SetActive(true);
     }
 }

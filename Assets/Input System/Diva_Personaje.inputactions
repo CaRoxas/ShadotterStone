@@ -344,7 +344,7 @@
                 {
                     "name": "",
                     "id": "75061874-ec0c-4598-a96e-47a62b4dfc91",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -366,7 +366,7 @@
                 {
                     "name": "",
                     "id": "3f5b8084-8bcf-43c7-a76a-8cdcde947aa2",
-                    "path": "<Keyboard>/numpad0",
+                    "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -377,7 +377,7 @@
                 {
                     "name": "",
                     "id": "88c6e924-6e3d-4810-a084-6fef9e449550",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
