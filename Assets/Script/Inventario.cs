@@ -77,7 +77,6 @@ public class Inventario : MonoBehaviour
             comidactiva = 0;
         }
         Interfaz.AlimentoSeleccionado(comidactiva);
-
     }
     public void ActivoIzquierda()
     {

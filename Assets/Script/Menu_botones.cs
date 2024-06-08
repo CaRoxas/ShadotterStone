@@ -5,8 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class Menu_botones : MonoBehaviour
 {
-    public GameObject creditos;
-    public GameObject controles;
+    //VARIABLES
+    public int botonactivo = 0;
+
+    //GAMEOBJECT
+    public GameObject menucreditos;
+    public GameObject menucontroles;
+    public GameObject continu3d;
+    public GameObject nuevo3d;
+    public GameObject credit3d;
+    public GameObject control3d;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +25,7 @@ public class Menu_botones : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    
     }
     public void BotonContinuar(string Shadotter_juego)
     {
@@ -26,12 +35,37 @@ public class Menu_botones : MonoBehaviour
     {
         SceneManager.LoadScene(Shadotter_juego);
     }
-    public void BotonControles()
+    public void BotonControlesOn()
     {
-        controles.SetActive(true);
+        menucontroles.SetActive(true);
     }
-    public void BotonCreditos()
+    public void BotonCreditosOn()
     {
-        creditos.SetActive(true);
+        menucreditos.SetActive(true);
+    }
+    public void BotonControlesOff()
+    {
+        menucontroles.SetActive(false);
+    }
+    public void BotonCreditosOff()
+    {
+        menucreditos.SetActive(false);
+    }
+    public void ActivoArriba()
+    {
+        botonactivo++;
+        if (botonactivo > 3)
+        {
+            botonactivo = 0;
+        }
+
+    }
+    public void ActivoAbajo()
+    {
+        botonactivo--;
+        if (botonactivo < 0)
+        {
+            botonactivo = 3;
+        }
     }
 }
