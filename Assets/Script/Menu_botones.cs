@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Menu_botones : MonoBehaviour
@@ -15,17 +16,20 @@ public class Menu_botones : MonoBehaviour
     public GameObject nuevo3d;
     public GameObject credit3d;
     public GameObject control3d;
-    
+
+    //ELEMENTOS DE UNITY
+    PlayerInput input;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        input = GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
     void Update()
     {
-    
+
     }
     public void BotonContinuar(string Shadotter_juego)
     {
@@ -58,7 +62,7 @@ public class Menu_botones : MonoBehaviour
         {
             botonactivo = 0;
         }
-
+        BotonSeleccionado(botonactivo);
     }
     public void ActivoAbajo()
     {
@@ -67,5 +71,41 @@ public class Menu_botones : MonoBehaviour
         {
             botonactivo = 3;
         }
+        BotonSeleccionado(botonactivo);
+    }
+    public void BotonSeleccionado(int botonactivo)
+    {
+        if (botonactivo == 0)
+        {
+            continu3d.SetActive(true);
+            nuevo3d.SetActive(false);
+            control3d.SetActive(false);
+            credit3d.SetActive(false);
+        }
+        else if (botonactivo == 1)
+        {
+            continu3d.SetActive(false);
+            nuevo3d.SetActive(true);
+            control3d.SetActive(false);
+            credit3d.SetActive(false);
+        }
+        else if (botonactivo == 2)
+        {
+            continu3d.SetActive(false);
+            nuevo3d.SetActive(false);
+            control3d.SetActive(true);
+            credit3d.SetActive(false);
+        }
+        else if (botonactivo == 3)
+        {
+            continu3d.SetActive(false);
+            nuevo3d.SetActive(false);
+            control3d.SetActive(false);
+            credit3d.SetActive(true);
+        }
+    }
+    public void SwitchCurrentActionMap()
+    {
+        input.SwitchCurrentActionMap("Menu");
     }
 }
