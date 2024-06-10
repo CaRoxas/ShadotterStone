@@ -1,0 +1,45 @@
+{
+    "name": "Pausa",
+    "maps": [
+        {
+            "name": "Pausa",
+            "id": "1d4510a2-eae3-44b3-90ea-6106e3bb071c",
+            "actions": [
+                {
+                    "name": "PausaOn",
+                    "type": "Button",
+                    "id": "557ce1c3-9a3c-4224-b27e-0d1cc9d36b9a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1d59ff73-7593-4e51-a4f1-22ac83f63ddc",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PausaOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb4e5558-77e6-4875-b9b2-5778bf144211",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PausaOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
