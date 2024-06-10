@@ -11,6 +11,7 @@ TagManager:
   - Laberinto
   - "Obst\xE1culos"
   - Premio
+  - plasta
   layers:
   - Default
   - TransparentFX

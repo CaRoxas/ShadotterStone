@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -12,13 +13,11 @@ public class Menu_botones : MonoBehaviour
     //GAMEOBJECT
     public GameObject menucreditos;
     public GameObject menucontroles;
-    public GameObject continu3d;
-    public GameObject nuevo3d;
-    public GameObject credit3d;
-    public GameObject control3d;
+    public GameObject botonContinuar;
 
     //ELEMENTOS DE UNITY
     PlayerInput input;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,81 +30,60 @@ public class Menu_botones : MonoBehaviour
     {
 
     }
+
+    //Este botón lo llamamos en un onclick del propio continuar para que empiece la partida por donde se dejó
     public void BotonContinuar(string Shadotter_juego)
     {
         SceneManager.LoadScene(Shadotter_juego);
     }
+
+    //Este botón lo llamamos en onclick en el propio de nuevo juego para empezar la partida desde 0
     public void BotonNuevoJuego(string Shadotter_juego)
     {
         SceneManager.LoadScene(Shadotter_juego);
     }
+
+    //Activa el menú de los controles con su imagen con la opción onclick
     public void BotonControlesOn()
     {
         menucontroles.SetActive(true);
     }
+
+    //Activa el menú de los créditos con su imagen con la opción onclick
     public void BotonCreditosOn()
     {
         menucreditos.SetActive(true);
     }
+
+    /*/Está opción hace que que se desactive en menú controles al pulsar el botón atrás y hace que el actual botón seleccionado (que sería el controles)
+    se deseleccione y pase al botón primero del menú principal en este caso el continuar*/
     public void BotonControlesOff()
     {
         menucontroles.SetActive(false);
+        //clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //set a new selected object 
+        EventSystem.current.SetSelectedGameObject(botonContinuar);
     }
+
+    /*/Está opción hace que que se desactive en menú créditos al pulsar el botón atrás y hace que el actual botón seleccionado (que sería el de créditos)
+    se deseleccione y pase al botón primero del menú principal en este caso el continuar*/
     public void BotonCreditosOff()
     {
         menucreditos.SetActive(false);
+        //clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //set a new selected object 
+        EventSystem.current.SetSelectedGameObject(botonContinuar);
     }
-    public void ActivoArriba()
+
+    //Aquí activa los métodos de arriba pulsando el botón físicamente (el ratón, mando o teclado) lo bueno sería separarlo con un bool
+    public void BotonCancelar(InputAction.CallbackContext context)
     {
-        botonactivo++;
-        if (botonactivo > 3)
+        if (context.phase == InputActionPhase.Performed) 
         {
-            botonactivo = 0;
+            BotonCreditosOff();
+            BotonControlesOff();
         }
-        BotonSeleccionado(botonactivo);
-    }
-    public void ActivoAbajo()
-    {
-        botonactivo--;
-        if (botonactivo < 0)
-        {
-            botonactivo = 3;
-        }
-        BotonSeleccionado(botonactivo);
-    }
-    public void BotonSeleccionado(int botonactivo)
-    {
-        if (botonactivo == 0)
-        {
-            continu3d.SetActive(true);
-            nuevo3d.SetActive(false);
-            control3d.SetActive(false);
-            credit3d.SetActive(false);
-        }
-        else if (botonactivo == 1)
-        {
-            continu3d.SetActive(false);
-            nuevo3d.SetActive(true);
-            control3d.SetActive(false);
-            credit3d.SetActive(false);
-        }
-        else if (botonactivo == 2)
-        {
-            continu3d.SetActive(false);
-            nuevo3d.SetActive(false);
-            control3d.SetActive(true);
-            credit3d.SetActive(false);
-        }
-        else if (botonactivo == 3)
-        {
-            continu3d.SetActive(false);
-            nuevo3d.SetActive(false);
-            control3d.SetActive(false);
-            credit3d.SetActive(true);
-        }
-    }
-    public void SwitchCurrentActionMap()
-    {
-        input.SwitchCurrentActionMap("Menu");
     }
 }
