@@ -38,6 +38,8 @@ public class Principal_Player : MonoBehaviour
 
     //OBJETOS
     GameObject objetoInteractuado;
+    public GameObject pantallafinal;
+    public AudioSource ambiente;
     public CinemachineVirtualCamera camaraseguimiento;
     public CinemachineVirtualCamera camaralaberinto;
     public CinemachineVirtualCamera camaranadar;
@@ -279,6 +281,14 @@ public class Principal_Player : MonoBehaviour
         }
     }
 
+    //Retardo de pantalla final después de colisionar con las piedras
+    public void RetardoFinal()
+    {
+        Destroy(objetoInteractuado);
+        pantallafinal.SetActive(true);
+        Time.timeScale = 0;
+    }
+
     //Colisiones de entrada
     private void OnCollisionEnter(Collision collision)
     {
@@ -294,6 +304,12 @@ public class Principal_Player : MonoBehaviour
         {
             empuja = true;
             animacion.SetBool("Empuja", true);
+            objetoInteractuado = collision.gameObject;
+        }
+        if (collision.gameObject.tag == "Premio")
+        {
+            animacion.SetBool("Gana", true);
+            Invoke("RetardoFinal", animacion.GetCurrentAnimatorStateInfo(0).length);
             objetoInteractuado = collision.gameObject;
         }
     }

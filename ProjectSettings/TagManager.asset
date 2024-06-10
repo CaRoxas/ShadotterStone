@@ -10,6 +10,7 @@ TagManager:
   - Puerta
   - Laberinto
   - "Obst\xE1culos"
+  - Premio
   layers:
   - Default
   - TransparentFX
