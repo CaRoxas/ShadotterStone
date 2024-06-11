@@ -8,25 +8,36 @@ public class Inventario : MonoBehaviour
     public int arandano = 0;
     public int huevo = 0;
     public int pescado = 0;
-
-    // activa = 0 -> arandano
-    // activa = 1 -> huevo
-    // activa = 2 -> pescado
     public int comidactiva = 0;
 
+    //SCRIPTS
     public Interfaz Interfaz;
+    public Guardado_datos guardado;
+
+    //Para hacer que cargue el inventario en un singleton
+    public static Inventario singleton;
+    void Awake()
+    {
+        if (singleton != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            singleton = this;
+            guardado.CargarArandanos();
+            guardado.CargarHuevos();
+            guardado.CargarPeces();
+            //DontDestroyOnLoad(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         
     }
-
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
 
     public int NumeroArandanos()

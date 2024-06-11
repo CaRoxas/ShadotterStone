@@ -46,9 +46,8 @@ public class Principal_Player : MonoBehaviour
 
     //SCRIPTS
     public Vida_Player Vidas;
-    public Inventario Mochila;
     public Casita Casa;
-    public Interfaz Interfaz;
+    public  Interfaz Interfaz;
 
     void Start()
     {
@@ -199,19 +198,19 @@ public class Principal_Player : MonoBehaviour
             if (objetoInteractuado.name.Contains("Food_Fish"))
             {
                 Debug.Log("pescaito cogido");
-                Mochila.GuardarPescado();
+                Inventario.singleton.GuardarPescado();
                 pezcogido = true;
             }
             if (objetoInteractuado.name.Contains("Food_Egg"))
             {
                 Debug.Log("huevo cogido");
-                Mochila.GuardarHuevo();
+                Inventario.singleton.GuardarHuevo();
                 huevocogido = true;
             }
             if (objetoInteractuado.name.Contains ("Food_Blueberry"))
             {
                 Debug.Log("arandanito cogido");
-                Mochila.GuadarArandano();
+                Inventario.singleton.GuadarArandano();
                 arandanocogido = true;
             } 
             animacion.SetTrigger("Recoger");
@@ -243,7 +242,7 @@ public class Principal_Player : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            Mochila.ActivoDerecha();
+             Inventario.singleton.ActivoDerecha();
         }
     }
 
@@ -252,7 +251,7 @@ public class Principal_Player : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            Mochila.ActivoIzquierda();
+             Inventario.singleton.ActivoIzquierda();
         }
     }
 
@@ -261,23 +260,23 @@ public class Principal_Player : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            if (Mochila.comidactiva == 0 && Mochila.arandano > 0)
+            if ( Inventario.singleton.comidactiva == 0 &&  Inventario.singleton.arandano > 0)
             {
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
                 Vidas.ComerArandano();
-                Mochila.QuitarArandano();
+                 Inventario.singleton.QuitarArandano();
             }
-            else if (Mochila.comidactiva == 1 && Mochila.huevo > 0)
+            else if ( Inventario.singleton.comidactiva == 1 &&  Inventario.singleton.huevo > 0)
             {
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
                 Vidas.ComerHuevo();
-                Mochila.QuitarHuevo();
+                 Inventario.singleton.QuitarHuevo();
             }
-            else if (Mochila.comidactiva == 2 && Mochila.pescado > 0)
+            else if ( Inventario.singleton.comidactiva == 2 &&  Inventario.singleton.pescado > 0)
             {
                 //Poner que cuando interactua con el pescado en el inventario haga lo siguiente:
                 Vidas.ComerPescao();
-                Mochila.QuitarPescado();
+                 Inventario.singleton.QuitarPescado();
             }
         }
     }

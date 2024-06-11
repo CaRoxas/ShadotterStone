@@ -18,6 +18,8 @@ public class Menu_principal : MonoBehaviour
     //ELEMENTOS DE UNITY
     PlayerInput input;
 
+    //SCRIPTS
+    public Guardado_datos guardado;
 
     // Start is called before the first frame update
     void Start()

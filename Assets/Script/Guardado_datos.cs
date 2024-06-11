@@ -10,24 +10,31 @@ public class Guardado_datos
     public int huevos;
     public int peces;
 
-    //SCRIPTS
-    
-    public Guardado_datos (Inventario comida)
-    {
-        arandanos = comida.arandano;
-        huevos = comida.huevo;
-        peces = comida.pescado;
 
-    }
-    void GuardarAlimentos(int score)
+    public void GuardarAlimentos()
     {
-        PlayerPrefs.SetInt("arandanos", score);
-        PlayerPrefs.SetInt("huevos", score);
-        PlayerPrefs.SetInt("huevos", score);
+        PlayerPrefs.SetInt("arandanos", Inventario.singleton.arandano);
+        PlayerPrefs.SetInt("huevos", Inventario.singleton.huevo);
+        PlayerPrefs.SetInt("pescado", Inventario.singleton.pescado);
         PlayerPrefs.Save();
     }
-    void CargarAlimentos()
+    public void BorrarAlimentos()
     {
-
+        //para llamarlo en la escena para no ponerlo en 
+    }
+    public void CargarArandanos()
+    {
+        int arandanoguardado = PlayerPrefs.GetInt("arandanos", 0);
+        Inventario.singleton.arandano = arandanoguardado;
+    }
+    public void CargarHuevos()
+    {
+        int huevosguardado = PlayerPrefs.GetInt("huevos", 0);
+        Inventario.singleton.huevo = huevosguardado;
+    }
+    public void CargarPeces()
+    {
+        int pecesguardado = PlayerPrefs.GetInt("peces", 0);
+        Inventario.singleton.pescado = pecesguardado;
     }
 }

@@ -17,7 +17,6 @@ public class Interfaz : MonoBehaviour
     public GameObject pezfoto;
 
     //SCRIPTS
-    public Inventario inventario;
     public Principal_Player jugador;
 
     // Start is called before the first frame update
@@ -26,6 +25,7 @@ public class Interfaz : MonoBehaviour
         aranfoto.SetActive(true);
         huefoto.SetActive(false);
         pezfoto.SetActive(false);
+        MostrarAlimento();
     }
 
     // Update is called once per frame
@@ -35,9 +35,9 @@ public class Interfaz : MonoBehaviour
     }
     public void MostrarAlimento()
     {
-        aranum.text = "x " + inventario.NumeroArandanos().ToString();
-        huenum.text = "x " + inventario.NumeroHuevos().ToString();
-        peznum.text = "x " + inventario.NumeroPescados().ToString();
+        aranum.text = "x " + Inventario.singleton.NumeroArandanos().ToString();
+        huenum.text = "x " + Inventario.singleton.NumeroHuevos().ToString();
+        peznum.text = "x " + Inventario.singleton.NumeroPescados().ToString();
     }
     public void AlimentoSeleccionado(int comidactiva)
     {

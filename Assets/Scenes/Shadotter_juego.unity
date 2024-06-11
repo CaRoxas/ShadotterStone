@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 9722756}
   - component: {fileID: 9722755}
   - component: {fileID: 9722754}
+  - component: {fileID: 9722757}
   m_Layer: 5
   m_Name: Button_GuardarSalir
   m_TagString: Untagged
@@ -175,10 +176,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 424679781}
+    m_SelectOnDown: {fileID: 424679781}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -205,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9722755}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9722757}
+        m_TargetAssemblyTypeName: Menu_pausa, Assembly-CSharp
+        m_MethodName: SalirYGuardar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9722755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +257,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9722752}
   m_CullTransparentMesh: 1
+--- !u!114 &9722757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9722752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb6e36e075e4574687b4c91f2611b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausita: {fileID: 0}
+  jugador: {fileID: 1556484820}
+  botonguardarsalir: {fileID: 0}
+  botonsalir: {fileID: 0}
+  guardado:
+    arandanos: 0
+    huevos: 0
+    peces: 0
 --- !u!1 &34330092
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,6 +954,7 @@ GameObject:
   - component: {fileID: 424679783}
   - component: {fileID: 424679782}
   - component: {fileID: 424679781}
+  - component: {fileID: 424679784}
   m_Layer: 5
   m_Name: Button_Salir
   m_TagString: Untagged
@@ -961,10 +995,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 9722754}
+    m_SelectOnDown: {fileID: 9722754}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -991,7 +1025,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 424679782}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 424679784}
+        m_TargetAssemblyTypeName: Menu_pausa, Assembly-CSharp
+        m_MethodName: Salir
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &424679782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,6 +1076,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424679779}
   m_CullTransparentMesh: 1
+--- !u!114 &424679784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424679779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb6e36e075e4574687b4c91f2611b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausita: {fileID: 0}
+  jugador: {fileID: 1556484820}
+  botonguardarsalir: {fileID: 0}
+  botonsalir: {fileID: 0}
+  guardado:
+    arandanos: 0
+    huevos: 0
+    peces: 0
 --- !u!1 &430357080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,7 +1238,7 @@ Transform:
   m_GameObject: {fileID: 462690001}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1e-45, z: -0, w: 1}
-  m_LocalPosition: {x: 83.98, y: 23.41, z: 912.50995}
+  m_LocalPosition: {x: 240.18, y: 23.41, z: 679.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2604,7 +2670,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1e-45, z: 0, w: 1}
-  m_LocalPosition: {x: 83.98, y: 23.41, z: 915.8242}
+  m_LocalPosition: {x: 240.18, y: 23.41, z: 679.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3182,6 +3248,10 @@ MonoBehaviour:
   pescado: 0
   comidactiva: 0
   Interfaz: {fileID: 1322911777}
+  guardado:
+    arandanos: 0
+    huevos: 0
+    peces: 0
 --- !u!4 &1268743079
 Transform:
   m_ObjectHideFlags: 0
@@ -3191,11 +3261,11 @@ Transform:
   m_GameObject: {fileID: 1268743077}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 492.39883, y: 1.1387043, z: 413.49756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1619975022}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1292427785
 GameObject:
@@ -3375,12 +3445,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322911775}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 492.39883, y: 1.1387043, z: 413.49756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1619975022}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1322911777
 MonoBehaviour:
@@ -3400,7 +3470,6 @@ MonoBehaviour:
   aranfoto: {fileID: 527331489}
   huefoto: {fileID: 664234408}
   pezfoto: {fileID: 1466049086}
-  inventario: {fileID: 1268743078}
   jugador: {fileID: 1556484820}
 --- !u!4 &1354404613 stripped
 Transform:
@@ -3730,7 +3799,7 @@ Transform:
   m_GameObject: {fileID: 1488992660}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 83.98, y: 38.41, z: 924.85}
+  m_LocalPosition: {x: 240.18, y: 38.41, z: 691.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3784,6 +3853,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausita: {fileID: 170403236}
   jugador: {fileID: 1556484820}
+  botonguardarsalir: {fileID: 9722752}
+  botonsalir: {fileID: 424679779}
   guardado:
     arandanos: 0
     huevos: 0
@@ -4155,7 +4226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7834439163254072695, guid: f70193883551d504d887832c88062858, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 86
+      value: 242.2
       objectReference: {fileID: 0}
     - target: {fileID: 7834439163254072695, guid: f70193883551d504d887832c88062858, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4163,7 +4234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7834439163254072695, guid: f70193883551d504d887832c88062858, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 916.1
+      value: 683
       objectReference: {fileID: 0}
     - target: {fileID: 7834439163254072695, guid: f70193883551d504d887832c88062858, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4273,7 +4344,6 @@ MonoBehaviour:
   camaralaberinto: {fileID: 1488992661}
   camaranadar: {fileID: 1931381985}
   Vidas: {fileID: 681091359}
-  Mochila: {fileID: 1268743078}
   Casa: {fileID: 2129182791}
   Interfaz: {fileID: 1322911777}
 --- !u!114 &1556484821
@@ -4900,9 +4970,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1268743079}
   - {fileID: 681091358}
-  - {fileID: 1322911776}
   - {fileID: 1647556210}
   - {fileID: 1449359157}
   - {fileID: 1490609451}
@@ -5482,7 +5550,7 @@ Transform:
   m_GameObject: {fileID: 1931381983}
   serializedVersion: 2
   m_LocalRotation: {x: -0.47185796, y: -0, z: -0, w: 0.8816746}
-  m_LocalPosition: {x: 86, y: 7.99, z: 908.1}
+  m_LocalPosition: {x: 242.2, y: 7.99, z: 675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6071,6 +6139,8 @@ SceneRoots:
   - {fileID: 555344864}
   - {fileID: 641784667}
   - {fileID: 483213696}
+  - {fileID: 1322911776}
+  - {fileID: 1268743079}
   - {fileID: 1619975022}
   - {fileID: 71708940}
   - {fileID: 34330096}
