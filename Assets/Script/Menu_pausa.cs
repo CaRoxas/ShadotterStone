@@ -64,6 +64,8 @@ public class Menu_pausa : MonoBehaviour
     }
     public void Salir()
     {
-
+        SceneManager.LoadScene("Shadotter_menu");
+        Time.timeScale = 1;
+        guardado.BorrarAlimentos();
     }
 }

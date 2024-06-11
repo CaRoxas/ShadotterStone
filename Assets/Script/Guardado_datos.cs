@@ -20,7 +20,10 @@ public class Guardado_datos
     }
     public void BorrarAlimentos()
     {
-        //para llamarlo en la escena para no ponerlo en 
+        PlayerPrefs.SetInt("arandanos", 0);
+        PlayerPrefs.SetInt("huevos", 0);
+        PlayerPrefs.SetInt("pescado", 0);
+        PlayerPrefs.Save();
     }
     public void CargarArandanos()
     {
