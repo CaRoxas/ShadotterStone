@@ -55,6 +55,7 @@ public class Principal_Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerinput = GetComponent<PlayerInput>();
         animacion = GetComponent<Animator>();
+        ambiente = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -287,6 +288,7 @@ public class Principal_Player : MonoBehaviour
         Destroy(objetoInteractuado);
         pantallafinal.SetActive(true);
         Time.timeScale = 0;
+        ambiente.mute = false;
     }
 
     //Colisiones de entrada

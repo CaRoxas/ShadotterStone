@@ -10,6 +10,7 @@ public class Tiempo : MonoBehaviour
 
     //SCRIPTS
     public Vida_Player vidilla;
+    public Principal_Player jugador;
 
     // Start is called before the first frame update
     void Start()
@@ -36,5 +37,12 @@ public class Tiempo : MonoBehaviour
             }
         }
         //Debug.Log(vidilla.vidanow);
+    }
+    void Noche()
+    {
+        /*/if (la orientación de la luz es X)
+        {
+            jugador.ambiente.olume = 0.3f;
+        }*/
     }
 }

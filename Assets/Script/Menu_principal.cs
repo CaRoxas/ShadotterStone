@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class Menu_botones : MonoBehaviour
+public class Menu_principal : MonoBehaviour
 {
     //VARIABLES
     public int botonactivo = 0;

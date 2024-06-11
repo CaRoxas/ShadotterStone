@@ -5,12 +5,17 @@ using UnityEngine.InputSystem;
 
 public class Menu_pausa : MonoBehaviour
 {
-    public GameObject pausita;
+    //VARIABLES
     bool pausa = false;
+
+    //ELEMENTOS UNITY
+    public GameObject pausita;
+    public Principal_Player jugador;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        jugador.ambiente.Play();
     }
 
     // Update is called once per frame
@@ -25,9 +30,11 @@ public class Menu_pausa : MonoBehaviour
             Time.timeScale = 0;
             pausita.SetActive(true);
             pausa = true;
+            jugador.ambiente.Stop();
         }
+
     }
-    public void NoPausa(InputAction.CallbackContext context)
+    /*public void NoPausa(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && pausa)
         {
@@ -35,5 +42,9 @@ public class Menu_pausa : MonoBehaviour
             pausita.SetActive(false);
             pausa = false;
         }
+    }*/
+    public void SalirYGuardar()
+    {
+
     }
 }
