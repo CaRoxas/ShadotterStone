@@ -22,6 +22,7 @@ public class Tiempo : MonoBehaviour
     void Update()
     {
         transform.Rotate(0, rotasol * Time.deltaTime, 0);
+        // con el if de esto será noche transform.rotation.y > 40;
         PasaTiempo();
         
     }

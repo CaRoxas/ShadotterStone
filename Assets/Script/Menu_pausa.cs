@@ -12,6 +12,9 @@ public class Menu_pausa : MonoBehaviour
     public GameObject pausita;
     public Principal_Player jugador;
 
+    //SCRIPTS
+    public Guardado_datos guardado;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,25 +28,31 @@ public class Menu_pausa : MonoBehaviour
     }
     public void Pausa(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed && !pausa)
+        if (context.phase == InputActionPhase.Performed)
         {
-            Time.timeScale = 0;
-            pausita.SetActive(true);
-            pausa = true;
-            jugador.ambiente.Stop();
+            //boton.setselectec = true
+            if (pausa)
+            {
+                Time.timeScale = 1;
+                pausita.SetActive(false);
+                pausa = false;
+                jugador.ambiente.Play();
+            }
+            else
+            {
+                Time.timeScale = 0;
+                pausita.SetActive(true);
+                pausa = true;
+                jugador.ambiente.Pause();
+            }
+           
         }
+    }
+    public void SalirYGuardar()
+    {
 
     }
-    /*public void NoPausa(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed && pausa)
-        {
-            Time.timeScale = 1;
-            pausita.SetActive(false);
-            pausa = false;
-        }
-    }*/
-    public void SalirYGuardar()
+    public void Salir()
     {
 
     }
