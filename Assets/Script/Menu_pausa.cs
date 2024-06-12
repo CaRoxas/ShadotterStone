@@ -10,7 +10,6 @@ public class Menu_pausa : MonoBehaviour
 {
     //VARIABLES
     bool pausa = false;
-    bool botonseleccionado = false;
 
     //ELEMENTOS UNITY
     public GameObject pausita;

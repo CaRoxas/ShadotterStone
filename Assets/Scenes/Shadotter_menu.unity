@@ -1827,8 +1827,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchoredPosition: {x: 0, y: -2}
+  m_SizeDelta: {x: 1920, y: 1120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &346130471
 MonoBehaviour:
@@ -2433,11 +2433,11 @@ MonoBehaviour:
   botonactivo: 0
   menucreditos: {fileID: 622282324}
   menucontroles: {fileID: 1176465422}
-  continu3d: {fileID: 0}
-  nuevo3d: {fileID: 0}
-  credit3d: {fileID: 0}
-  control3d: {fileID: 0}
   botonContinuar: {fileID: 1821180799}
+  guardado:
+    arandanos: 0
+    huevos: 0
+    peces: 0
 --- !u!1 &441747443
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,11 +3397,11 @@ MonoBehaviour:
   botonactivo: 0
   menucreditos: {fileID: 622282324}
   menucontroles: {fileID: 1176465422}
-  continu3d: {fileID: 0}
-  nuevo3d: {fileID: 0}
-  credit3d: {fileID: 0}
-  control3d: {fileID: 0}
   botonContinuar: {fileID: 0}
+  guardado:
+    arandanos: 0
+    huevos: 0
+    peces: 0
 --- !u!114 &672985834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3703,11 +3703,11 @@ MonoBehaviour:
   botonactivo: 0
   menucreditos: {fileID: 622282324}
   menucontroles: {fileID: 1176465422}
-  continu3d: {fileID: 1589453599}
-  nuevo3d: {fileID: 1513047518}
-  credit3d: {fileID: 854795388}
-  control3d: {fileID: 1006464640}
   botonContinuar: {fileID: 0}
+  guardado:
+    arandanos: 0
+    huevos: 0
+    peces: 0
 --- !u!114 &838616039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5117,11 +5117,11 @@ MonoBehaviour:
   botonactivo: 0
   menucreditos: {fileID: 622282324}
   menucontroles: {fileID: 1176465422}
-  continu3d: {fileID: 0}
-  nuevo3d: {fileID: 0}
-  credit3d: {fileID: 0}
-  control3d: {fileID: 0}
   botonContinuar: {fileID: 0}
+  guardado:
+    arandanos: 0
+    huevos: 0
+    peces: 0
 --- !u!114 &1232405805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6358,11 +6358,11 @@ MonoBehaviour:
   botonactivo: 0
   menucreditos: {fileID: 0}
   menucontroles: {fileID: 0}
-  continu3d: {fileID: 1589453599}
-  nuevo3d: {fileID: 1513047518}
-  credit3d: {fileID: 0}
-  control3d: {fileID: 0}
   botonContinuar: {fileID: 0}
+  guardado:
+    arandanos: 0
+    huevos: 0
+    peces: 0
 --- !u!114 &1455825458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7038,11 +7038,11 @@ MonoBehaviour:
   botonactivo: 0
   menucreditos: {fileID: 622282324}
   menucontroles: {fileID: 0}
-  continu3d: {fileID: 0}
-  nuevo3d: {fileID: 0}
-  credit3d: {fileID: 0}
-  control3d: {fileID: 0}
   botonContinuar: {fileID: 1821180799}
+  guardado:
+    arandanos: 0
+    huevos: 0
+    peces: 0
 --- !u!114 &1590978980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7982,11 +7982,11 @@ MonoBehaviour:
   botonactivo: 0
   menucreditos: {fileID: 0}
   menucontroles: {fileID: 0}
-  continu3d: {fileID: 0}
-  nuevo3d: {fileID: 0}
-  credit3d: {fileID: 0}
-  control3d: {fileID: 0}
   botonContinuar: {fileID: 0}
+  guardado:
+    arandanos: 0
+    huevos: 0
+    peces: 0
 --- !u!114 &1821180802
 MonoBehaviour:
   m_ObjectHideFlags: 0

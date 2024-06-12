@@ -40,6 +40,11 @@ public class Principal_Player : MonoBehaviour
     GameObject objetoInteractuado;
     public GameObject pantallafinal;
     public AudioSource ambiente;
+    public AudioSource agarrar;
+    public AudioSource caminar;
+    public AudioSource comer;
+    public AudioSource correr;
+    public AudioSource nadar;
     public CinemachineVirtualCamera camaraseguimiento;
     public CinemachineVirtualCamera camaralaberinto;
     public CinemachineVirtualCamera camaranadar;
@@ -82,6 +87,7 @@ public class Principal_Player : MonoBehaviour
             Vector3 movimiento = adelante + lado;
             movimiento.y = rb.velocity.y;
             rb.velocity = movimiento;
+            caminar.Play();
             animacion.SetBool("SeMueve", true);
             animacion.SetFloat("Velocidad", movAction.y);
         }
@@ -99,6 +105,7 @@ public class Principal_Player : MonoBehaviour
             Vector3 movimiento = adelante + lado;
             movimiento.y = rb.velocity.y;
             rb.velocity = movimiento;
+            nadar.Play();
             animacion.SetBool("Nada", true);
             camaranadar.Priority = 11;
             camaralaberinto.Priority = 10;
@@ -106,6 +113,7 @@ public class Principal_Player : MonoBehaviour
         }
         else if (aguain == false && laberintoin == false)
         {
+            nadar.Pause();
             animacion.SetBool("Nada", false);
             camaranadar.Priority = 10;
             camaralaberinto.Priority = 10;
@@ -232,6 +240,7 @@ public class Principal_Player : MonoBehaviour
     //Añadimos un retardo en la contabilización del alimento y es su destrucción, solo cuando ha hecho la animación se muestra el alimento en el inventario y se destruye
     public void RetardoRecogerAlimento()
     {
+        agarrar.Play();
         Destroy(objetoInteractuado);
         objetoInteractuado = null;
         Interfaz.MostrarAlimento();
@@ -260,23 +269,27 @@ public class Principal_Player : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            if ( Inventario.singleton.comidactiva == 0 &&  Inventario.singleton.arandano > 0)
+            if (Inventario.singleton.comidactiva == 0 && Inventario.singleton.arandano > 0)
             {
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
+                comer.Play();
                 Vidas.ComerArandano();
-                 Inventario.singleton.QuitarArandano();
+                Inventario.singleton.QuitarArandano();
+                Debug.Log(Inventario.singleton.arandano);
             }
-            else if ( Inventario.singleton.comidactiva == 1 &&  Inventario.singleton.huevo > 0)
+            else if (Inventario.singleton.comidactiva == 1 && Inventario.singleton.huevo > 0)
             {
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
+                comer.Play();
                 Vidas.ComerHuevo();
-                 Inventario.singleton.QuitarHuevo();
+                Inventario.singleton.QuitarHuevo();
             }
-            else if ( Inventario.singleton.comidactiva == 2 &&  Inventario.singleton.pescado > 0)
+            else if (Inventario.singleton.comidactiva == 2 && Inventario.singleton.pescado > 0)
             {
                 //Poner que cuando interactua con el pescado en el inventario haga lo siguiente:
+                comer.Play();
                 Vidas.ComerPescao();
-                 Inventario.singleton.QuitarPescado();
+                Inventario.singleton.QuitarPescado();
             }
         }
     }

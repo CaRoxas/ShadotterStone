@@ -37,12 +37,14 @@ public class Menu_principal : MonoBehaviour
     public void BotonContinuar(string Shadotter_juego)
     {
         SceneManager.LoadScene(Shadotter_juego);
+        guardado.GuardarAlimentos();
     }
 
     //Este botón lo llamamos en onclick en el propio de nuevo juego para empezar la partida desde 0
     public void BotonNuevoJuego(string Shadotter_juego)
     {
         SceneManager.LoadScene(Shadotter_juego);
+        guardado.BorrarAlimentos();
     }
 
     //Activa el menú de los controles con su imagen con la opción onclick

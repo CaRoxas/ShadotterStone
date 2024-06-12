@@ -31,15 +31,6 @@ public class Inventario : MonoBehaviour
             //DontDestroyOnLoad(gameObject);
         }
     }
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
-    // Update is called once per frame
-
-
     public int NumeroArandanos()
     {
         return arandano;
