@@ -12,10 +12,12 @@ public class Menu_pausa : MonoBehaviour
     bool pausa = false;
 
     //ELEMENTOS UNITY
-    public GameObject pausita;
+    public GameObject menupausa;
     public Principal_Player jugador;
     public GameObject botonguardarsalir;
     public GameObject botonsalir;
+    public AudioSource sonidopausa;
+
     //SCRIPTS
     public Guardado_datos guardado;
 
@@ -34,24 +36,24 @@ public class Menu_pausa : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            //boton.setselectec = true
-            if (pausa)
-            {
-                Time.timeScale = 1;
-                pausita.SetActive(false);
-                pausa = false;
-                jugador.ambiente.Play();
-            }
-            else
+            if (!pausa)
             {
                 //clear selected object
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(botonguardarsalir);
 
+                sonidopausa.Play();
                 Time.timeScale = 0;
-                pausita.SetActive(true);
+                menupausa.SetActive(true);
                 pausa = true;
-                jugador.ambiente.Pause();
+                jugador.sonidoambiente.Pause();
+            }
+            else
+            {
+                Time.timeScale = 1;
+                menupausa.SetActive(false);
+                pausa = false;
+                jugador.sonidoambiente.Play();
             }
         }
     }

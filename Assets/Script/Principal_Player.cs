@@ -39,12 +39,16 @@ public class Principal_Player : MonoBehaviour
     //OBJETOS
     GameObject objetoInteractuado;
     public GameObject pantallafinal;
-    public AudioSource ambiente;
-    public AudioSource agarrar;
-    public AudioSource caminar;
-    public AudioSource comer;
-    public AudioSource correr;
-    public AudioSource nadar;
+    public AudioSource sonidoambiente;
+    public AudioSource sonidoagarrar;
+    public AudioSource sonidocaminar;
+    public AudioSource sonidocomer;
+    public AudioSource sonidocorrer;
+    public AudioSource sonidonadar;
+    public AudioSource sonidopuerta;
+    public AudioSource sonidosalto;
+    public AudioSource sonidosentarse;
+    public AudioSource sonidofinal;
     public CinemachineVirtualCamera camaraseguimiento;
     public CinemachineVirtualCamera camaralaberinto;
     public CinemachineVirtualCamera camaranadar;
@@ -59,7 +63,6 @@ public class Principal_Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerinput = GetComponent<PlayerInput>();
         animacion = GetComponent<Animator>();
-        ambiente = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -87,7 +90,7 @@ public class Principal_Player : MonoBehaviour
             Vector3 movimiento = adelante + lado;
             movimiento.y = rb.velocity.y;
             rb.velocity = movimiento;
-            caminar.Play();
+            sonidocaminar.Play();
             animacion.SetBool("SeMueve", true);
             animacion.SetFloat("Velocidad", movAction.y);
         }
@@ -105,7 +108,7 @@ public class Principal_Player : MonoBehaviour
             Vector3 movimiento = adelante + lado;
             movimiento.y = rb.velocity.y;
             rb.velocity = movimiento;
-            nadar.Play();
+            sonidonadar.Play();
             animacion.SetBool("Nada", true);
             camaranadar.Priority = 11;
             camaralaberinto.Priority = 10;
@@ -113,7 +116,7 @@ public class Principal_Player : MonoBehaviour
         }
         else if (aguain == false && laberintoin == false)
         {
-            nadar.Pause();
+            sonidonadar.Pause();
             animacion.SetBool("Nada", false);
             camaranadar.Priority = 10;
             camaralaberinto.Priority = 10;
@@ -124,6 +127,7 @@ public class Principal_Player : MonoBehaviour
         if (Vidas.vidanow <= 0)
         {
             animacion.SetBool("SeDetiene",true);
+            sonidosentarse.Play();
             cansadita = true;
         }
         else
@@ -190,6 +194,7 @@ public class Principal_Player : MonoBehaviour
     public void SaltoAnimacion()
     {
         rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
+        sonidosalto.Play();
     }
 
     //Llamamos en el final de la animación un evento para que en ese momento haga añada la fuerza de peso hacia abajo
@@ -227,6 +232,7 @@ public class Principal_Player : MonoBehaviour
         }
         if (context.phase == InputActionPhase.Performed && puertain)
         {
+            sonidopuerta.Play();
             Casa.AnimacionPuerta();
             puertain = false;
         }
@@ -240,7 +246,7 @@ public class Principal_Player : MonoBehaviour
     //Añadimos un retardo en la contabilización del alimento y es su destrucción, solo cuando ha hecho la animación se muestra el alimento en el inventario y se destruye
     public void RetardoRecogerAlimento()
     {
-        agarrar.Play();
+        sonidoagarrar.Play();
         Destroy(objetoInteractuado);
         objetoInteractuado = null;
         Interfaz.MostrarAlimento();
@@ -272,7 +278,7 @@ public class Principal_Player : MonoBehaviour
             if (Inventario.singleton.comidactiva == 0 && Inventario.singleton.arandano > 0)
             {
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
-                comer.Play();
+                sonidocomer.Play();
                 Vidas.ComerArandano();
                 Inventario.singleton.QuitarArandano();
                 Debug.Log(Inventario.singleton.arandano);
@@ -280,14 +286,14 @@ public class Principal_Player : MonoBehaviour
             else if (Inventario.singleton.comidactiva == 1 && Inventario.singleton.huevo > 0)
             {
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
-                comer.Play();
+                sonidocomer.Play();
                 Vidas.ComerHuevo();
                 Inventario.singleton.QuitarHuevo();
             }
             else if (Inventario.singleton.comidactiva == 2 && Inventario.singleton.pescado > 0)
             {
                 //Poner que cuando interactua con el pescado en el inventario haga lo siguiente:
-                comer.Play();
+                sonidocomer.Play();
                 Vidas.ComerPescao();
                 Inventario.singleton.QuitarPescado();
             }
@@ -300,7 +306,6 @@ public class Principal_Player : MonoBehaviour
         Destroy(objetoInteractuado);
         pantallafinal.SetActive(true);
         Time.timeScale = 0;
-        ambiente.mute = false;
     }
 
     //Colisiones de entrada
@@ -323,8 +328,11 @@ public class Principal_Player : MonoBehaviour
         if (collision.gameObject.tag == "Premio")
         {
             animacion.SetBool("Gana", true);
-            Invoke("RetardoFinal", animacion.GetCurrentAnimatorStateInfo(0).length);
             objetoInteractuado = collision.gameObject;
+            Invoke("RetardoFinal", animacion.GetCurrentAnimatorStateInfo(0).length);
+            
+            sonidoambiente.Pause();
+            sonidofinal.Play();
         }
     }
 
@@ -350,7 +358,6 @@ public class Principal_Player : MonoBehaviour
         }
         if (trigger.gameObject.tag == "Puerta")
         {
-            objetoInteractuado = trigger.gameObject;
             puertain = true;
         }
         if (trigger.gameObject.tag == "Laberinto")
@@ -372,7 +379,6 @@ public class Principal_Player : MonoBehaviour
         if (trigger.gameObject.tag == "Puerta")
         {
             puertain = false;
-            objetoInteractuado = null;
         }
         if (trigger.gameObject.tag == "Laberinto")
         {

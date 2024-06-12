@@ -55,7 +55,6 @@ public class Nadar : MonoBehaviour
             jugador.aguain = false;
             Diva.transform.Rotate(-90f, 0f, 0f);
             flotacion.publalturaOlas = 0f;
-            Debug.Log("Fuera" + flotacion.publalturaOlas);
         }
     }
 }

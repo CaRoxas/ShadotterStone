@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Tiempo : MonoBehaviour
 {
@@ -22,9 +23,7 @@ public class Tiempo : MonoBehaviour
     void Update()
     {
         transform.Rotate(0, rotasol * Time.deltaTime, 0);
-        // con el if de esto será noche transform.rotation.y > 40;
         PasaTiempo();
-        
     }
     void PasaTiempo()
     {
@@ -41,9 +40,9 @@ public class Tiempo : MonoBehaviour
     }
     void Noche()
     {
-        /*/if (la orientación de la luz es X)
+        /*if (transform.rotation.y <=65 && transform.rotation.y >= 115)
         {
-            jugador.ambiente.olume = 0.3f;
+            jugador.sonidoambiente.volume = 0.3f;
         }*/
     }
 }
