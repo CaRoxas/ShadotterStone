@@ -43,7 +43,6 @@ public class Principal_Player : MonoBehaviour
     public AudioSource sonidoagarrar;
     public AudioSource sonidocaminar;
     public AudioSource sonidocomer;
-    public AudioSource sonidocorrer;
     public AudioSource sonidonadar;
     public AudioSource sonidopuerta;
     public AudioSource sonidosalto;
@@ -90,12 +89,13 @@ public class Principal_Player : MonoBehaviour
             Vector3 movimiento = adelante + lado;
             movimiento.y = rb.velocity.y;
             rb.velocity = movimiento;
-            sonidocaminar.Play();
+            sonidocaminar.enabled = true;
             animacion.SetBool("SeMueve", true);
             animacion.SetFloat("Velocidad", movAction.y);
         }
         else
         {
+            sonidocaminar.enabled = false;
             animacion.SetBool("SeMueve", false);
             animacion.SetFloat("Velocidad", movAction.y);
         }
@@ -108,7 +108,6 @@ public class Principal_Player : MonoBehaviour
             Vector3 movimiento = adelante + lado;
             movimiento.y = rb.velocity.y;
             rb.velocity = movimiento;
-            sonidonadar.Play();
             animacion.SetBool("Nada", true);
             camaranadar.Priority = 11;
             camaralaberinto.Priority = 10;
@@ -116,7 +115,7 @@ public class Principal_Player : MonoBehaviour
         }
         else if (aguain == false && laberintoin == false)
         {
-            sonidonadar.Pause();
+
             animacion.SetBool("Nada", false);
             camaranadar.Priority = 10;
             camaralaberinto.Priority = 10;
@@ -232,14 +231,15 @@ public class Principal_Player : MonoBehaviour
         }
         if (context.phase == InputActionPhase.Performed && puertain)
         {
-            sonidopuerta.Play();
             Casa.AnimacionPuerta();
             puertain = false;
+            sonidopuerta.Play();
         }
         else if (context.phase == InputActionPhase.Performed)
         {
             Casa.CerrarPuerta();
             puertain = true;
+            sonidopuerta.Pause();
         }
     }
 
@@ -330,7 +330,6 @@ public class Principal_Player : MonoBehaviour
             animacion.SetBool("Gana", true);
             objetoInteractuado = collision.gameObject;
             Invoke("RetardoFinal", animacion.GetCurrentAnimatorStateInfo(0).length);
-            
             sonidoambiente.Pause();
             sonidofinal.Play();
         }

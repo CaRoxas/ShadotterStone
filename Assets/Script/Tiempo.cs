@@ -40,9 +40,9 @@ public class Tiempo : MonoBehaviour
     }
     void Noche()
     {
-        /*if (transform.rotation.y <=65 && transform.rotation.y >= 115)
+        if (transform.rotation.y >=65 && transform.rotation.y <= -115)
         {
             jugador.sonidoambiente.volume = 0.3f;
-        }*/
+        }
     }
 }

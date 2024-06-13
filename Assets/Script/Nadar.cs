@@ -28,6 +28,7 @@ public class Nadar : MonoBehaviour
         if (trigger.gameObject.tag == "Awita")
         {
             jugador.aguain = true;
+            jugador.sonidonadar.Play();
             Diva.transform.Rotate(90f, 0f, 0f);
             flotacion.publalturaOlas = 3.2f;
             Debug.Log("Dentro" + flotacion.publalturaOlas);
@@ -52,6 +53,7 @@ public class Nadar : MonoBehaviour
         Debug.Log("exit " + trigger.gameObject.tag);
         if (trigger.gameObject.tag == "Awita")
         {
+            jugador.sonidonadar.Pause();
             jugador.aguain = false;
             Diva.transform.Rotate(-90f, 0f, 0f);
             flotacion.publalturaOlas = 0f;

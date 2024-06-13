@@ -38,7 +38,7 @@ public class Menu_pausa : MonoBehaviour
         {
             if (!pausa)
             {
-                //clear selected object
+                //Este evento hace que al pulsar el botón abra el menú y el botón selecionado sea el de guardar y salir el mismo evento que llamamos en el menu principal
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(botonguardarsalir);
 
