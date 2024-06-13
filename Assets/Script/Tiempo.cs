@@ -24,6 +24,7 @@ public class Tiempo : MonoBehaviour
     {
         transform.Rotate(0, rotasol * Time.deltaTime, 0);
         PasaTiempo();
+        Noche();
     }
     void PasaTiempo()
     {

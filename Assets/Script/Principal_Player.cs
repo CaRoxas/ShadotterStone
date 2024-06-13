@@ -123,11 +123,16 @@ public class Principal_Player : MonoBehaviour
 
         }
         //ESTÁ CANSADO
-        if (Vidas.vidanow <= 0)
+        if (Vidas.vidanow <= 0 )
         {
+            if (!cansadita)
+            {
+             sonidosentarse.Play();
             animacion.SetBool("SeDetiene",true);
-            sonidosentarse.Play();
+  
             cansadita = true;
+            }
+           
         }
         else
         {
@@ -275,10 +280,10 @@ public class Principal_Player : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
+            sonidocomer.Play();
             if (Inventario.singleton.comidactiva == 0 && Inventario.singleton.arandano > 0)
             {
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
-                sonidocomer.Play();
                 Vidas.ComerArandano();
                 Inventario.singleton.QuitarArandano();
                 Debug.Log(Inventario.singleton.arandano);
@@ -286,17 +291,16 @@ public class Principal_Player : MonoBehaviour
             else if (Inventario.singleton.comidactiva == 1 && Inventario.singleton.huevo > 0)
             {
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
-                sonidocomer.Play();
                 Vidas.ComerHuevo();
                 Inventario.singleton.QuitarHuevo();
             }
             else if (Inventario.singleton.comidactiva == 2 && Inventario.singleton.pescado > 0)
             {
                 //Poner que cuando interactua con el pescado en el inventario haga lo siguiente:
-                sonidocomer.Play();
                 Vidas.ComerPescao();
                 Inventario.singleton.QuitarPescado();
             }
+            Interfaz.MostrarAlimento();
         }
     }
 
