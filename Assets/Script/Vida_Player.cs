@@ -30,6 +30,10 @@ public class Vida_Player : MonoBehaviour
         {
             vidanow = vidamax;
         }
+        if (vidanow <= 0)
+        {
+            vidanow = 0;
+        }
     }
     public void ComerArandano()
     {
