@@ -22,9 +22,11 @@ public class Principal_Player : MonoBehaviour
     public float bajadaSalto = 70f;
     bool alimentoin = false;
     bool puertain = false;
+    bool abierta = false;
     bool laberintoin = false;
     bool cansadita = false;
     bool empuja = false;
+    bool recogiendo = false;
     float movx, movy;
     [HideInInspector]
     public bool aguain = false;
@@ -39,6 +41,7 @@ public class Principal_Player : MonoBehaviour
     //OBJETOS
     GameObject objetoInteractuado;
     public GameObject pantallafinal;
+    public ParticleSystem particulascomer;
     public AudioSource sonidoambiente;
     public AudioSource sonidoagarrar;
     public AudioSource sonidocaminar;
@@ -59,6 +62,7 @@ public class Principal_Player : MonoBehaviour
 
     void Start()
     {
+
         rb = GetComponent<Rigidbody>();
         playerinput = GetComponent<PlayerInput>();
         animacion = GetComponent<Animator>();
@@ -81,8 +85,8 @@ public class Principal_Player : MonoBehaviour
         NOTA: TRANSFORM.FORWARD = ADELANTE EN LOCAL, FORWARD (SIN TRANSAFORM) = ADELANTE EN GLOBAL (EL MUNDO)*/
 
         Vector2 movAction = playerinput.actions["Move"].ReadValue<Vector2>();
-      
-        if ((movAction.y != 0 || movAction.x != 0) && !aguain && !cansadita)
+
+        if ((movAction.y != 0 || movAction.x != 0) && !aguain && !cansadita && !recogiendo)
         {
             Vector3 adelante = movAction.y * velocidad * transform.forward;
             Vector3 lado = movAction.x * velocidad * transform.right;
@@ -115,24 +119,20 @@ public class Principal_Player : MonoBehaviour
         }
         else if (aguain == false && laberintoin == false)
         {
-
             animacion.SetBool("Nada", false);
             camaranadar.Priority = 10;
             camaralaberinto.Priority = 10;
             camaraseguimiento.Priority = 11;
-
         }
         //ESTÁ CANSADO
         if (Vidas.vidanow <= 0 )
         {
             if (!cansadita)
             {
-             sonidosentarse.Play();
-            animacion.SetBool("SeDetiene",true);
-  
-            cansadita = true;
+                sonidosentarse.Play();
+                animacion.SetBool("SeDetiene",true);
+                cansadita = true;
             }
-           
         }
         else
         {
@@ -211,7 +211,8 @@ public class Principal_Player : MonoBehaviour
     public void AccionesCogerAbrir(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed && alimentoin)
-        {
+        {            
+            recogiendo = true;
             if (objetoInteractuado.name.Contains("Food_Fish"))
             {
                 Debug.Log("pescaito cogido");
@@ -229,22 +230,22 @@ public class Principal_Player : MonoBehaviour
                 Debug.Log("arandanito cogido");
                 Inventario.singleton.GuadarArandano();
                 arandanocogido = true;
-            } 
+            }
+
             animacion.SetTrigger("Recoger");
             Invoke("RetardoRecogerAlimento", animacion.GetCurrentAnimatorStateInfo(0).length);
             alimentoin = false;
         }
-        if (context.phase == InputActionPhase.Performed && puertain)
+        if (context.phase == InputActionPhase.Performed && puertain && !abierta)
         {
             Casa.AnimacionPuerta();
-            puertain = false;
             sonidopuerta.Play();
+            abierta = true;
         }
-        else if (context.phase == InputActionPhase.Performed)
+        else if (context.phase == InputActionPhase.Performed && puertain && abierta)
         {
             Casa.CerrarPuerta();
-            puertain = true;
-            sonidopuerta.Pause();
+            abierta = false;
         }
     }
 
@@ -255,6 +256,7 @@ public class Principal_Player : MonoBehaviour
         Destroy(objetoInteractuado);
         objetoInteractuado = null;
         Interfaz.MostrarAlimento();
+        recogiendo = false;
     }
 
     //Hacemos que traslade por botones la elección de los alimentos en el inventario hacia la derecha y que vuelva a la izquierda
@@ -280,22 +282,24 @@ public class Principal_Player : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            sonidocomer.Play();
+            particulascomer.Play();
             if (Inventario.singleton.comidactiva == 0 && Inventario.singleton.arandano > 0)
             {
+                sonidocomer.Play();
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
                 Vidas.ComerArandano();
                 Inventario.singleton.QuitarArandano();
-                Debug.Log(Inventario.singleton.arandano);
             }
             else if (Inventario.singleton.comidactiva == 1 && Inventario.singleton.huevo > 0)
             {
+                sonidocomer.Play();
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
                 Vidas.ComerHuevo();
                 Inventario.singleton.QuitarHuevo();
             }
             else if (Inventario.singleton.comidactiva == 2 && Inventario.singleton.pescado > 0)
             {
+                sonidocomer.Play();
                 //Poner que cuando interactua con el pescado en el inventario haga lo siguiente:
                 Vidas.ComerPescao();
                 Inventario.singleton.QuitarPescado();

@@ -2137,7 +2137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidilla: {fileID: 681091359}
-  jugador: {fileID: 0}
+  jugador: {fileID: 1556484820}
 --- !u!1 &713833497
 GameObject:
   m_ObjectHideFlags: 0
@@ -4232,7 +4232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidilla: {fileID: 681091359}
-  jugador: {fileID: 0}
+  jugador: {fileID: 1556484820}
 --- !u!1 &1466049086
 GameObject:
   m_ObjectHideFlags: 0
@@ -5010,6 +5010,7 @@ MonoBehaviour:
   huevocogido: 0
   pezcogido: 0
   pantallafinal: {fileID: 488279948}
+  particulascomer: {fileID: 1893203649}
   sonidoambiente: {fileID: 312132174}
   sonidoagarrar: {fileID: 964934542}
   sonidocaminar: {fileID: 1301202880}
@@ -6584,6 +6585,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879453643}
   m_CullTransparentMesh: 1
+--- !u!198 &1893203649 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6817205429252382990, guid: f70193883551d504d887832c88062858, type: 3}
+  m_PrefabInstance: {fileID: 1556484817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1909537877
 GameObject:
   m_ObjectHideFlags: 0

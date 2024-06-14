@@ -24,7 +24,6 @@ public class Tiempo : MonoBehaviour
     {
         transform.Rotate(0, rotasol * Time.deltaTime, 0);
         PasaTiempo();
-        Noche();
     }
     void PasaTiempo()
     {
@@ -39,11 +38,15 @@ public class Tiempo : MonoBehaviour
         }
         //Debug.Log(vidilla.vidanow);
     }
-    void Noche()
+    /*/void Noche()
     {
-        if (transform.rotation.y >=65 && transform.rotation.y <= -115)
+        if (transform.eulerAngles.z >= 49)
         {
             jugador.sonidoambiente.volume = 0.3f;
         }
-    }
+        else
+        {
+            jugador.sonidoambiente.volume = 1;
+        }
+    }*/
 }
