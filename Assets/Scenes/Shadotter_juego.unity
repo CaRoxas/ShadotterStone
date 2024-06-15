@@ -4524,11 +4524,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb6e36e075e4574687b4c91f2611b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menupausa: {fileID: 0}
+  menupausa: {fileID: 170403236}
   jugador: {fileID: 1556484820}
   botonguardarsalir: {fileID: 9722752}
   botonsalir: {fileID: 424679779}
-  sonidopausa: {fileID: 0}
+  sonidopausa: {fileID: 1909537878}
   guardado:
     arandanos: 0
     huevos: 0
