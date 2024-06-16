@@ -3382,7 +3382,6 @@ GameObject:
   - component: {fileID: 1008331665}
   - component: {fileID: 1008331664}
   - component: {fileID: 1008331668}
-  - component: {fileID: 1008331669}
   m_Layer: 4
   m_Name: Lago
   m_TagString: Awita
@@ -3490,29 +3489,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 30, y: 0.09992033, z: 30}
-  m_Center: {x: 0, y: 0.00003886409, z: 0}
---- !u!65 &1008331669
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008331663}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 30, y: 7.693738, z: 30}
-  m_Center: {x: 0, y: -7.4336705, z: 0}
+  m_Size: {x: 30, y: 23.39959, z: 30}
+  m_Center: {x: 0, y: -11.749716, z: 0}
 --- !u!1001 &1101447043
 PrefabInstance:
   m_ObjectHideFlags: 0

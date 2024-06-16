@@ -18,7 +18,7 @@ public class Principal_Player : MonoBehaviour
     float velocidad = 4f;
     float gradosrot = 45f;
     public float fuerzaSalto = 45f;
-    public float bajadaSalto = 70f;
+    public float bajadaSalto = 45f;
     bool alimentoin = false;
     bool puertain = false;
     bool abierta = false;
