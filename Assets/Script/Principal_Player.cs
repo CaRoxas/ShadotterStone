@@ -40,6 +40,7 @@ public class Principal_Player : MonoBehaviour
     //OBJETOS
     GameObject objetoInteractuado;
     public GameObject pantallafinal;
+    public GameObject pantallacansada;
     public ParticleSystem particulascomer;
     public AudioSource sonidoambiente;
     public AudioSource sonidoagarrar;
@@ -129,12 +130,14 @@ public class Principal_Player : MonoBehaviour
             if (!cansadita)
             {
                 sonidosentarse.Play();
+                pantallacansada.SetActive(true);
                 animacion.SetBool("SeDetiene",true);
                 cansadita = true;
             }
         }
         else
         {
+            pantallacansada.SetActive(false);
             animacion.SetBool("SeDetiene", false);
             cansadita = false;
         }
@@ -281,9 +284,9 @@ public class Principal_Player : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            particulascomer.Play();
             if (Inventario.singleton.comidactiva == 0 && Inventario.singleton.arandano > 0)
             {
+                particulascomer.Play();
                 sonidocomer.Play();
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
                 Vidas.ComerArandano();
@@ -291,6 +294,7 @@ public class Principal_Player : MonoBehaviour
             }
             else if (Inventario.singleton.comidactiva == 1 && Inventario.singleton.huevo > 0)
             {
+                particulascomer.Play();
                 sonidocomer.Play();
                 //Poner que cuando interactua con el arandano en el inventario haga lo siguiente:
                 Vidas.ComerHuevo();
@@ -298,6 +302,7 @@ public class Principal_Player : MonoBehaviour
             }
             else if (Inventario.singleton.comidactiva == 2 && Inventario.singleton.pescado > 0)
             {
+                particulascomer.Play();
                 sonidocomer.Play();
                 //Poner que cuando interactua con el pescado en el inventario haga lo siguiente:
                 Vidas.ComerPescao();

@@ -13,13 +13,13 @@ public class Menu_pausa : MonoBehaviour
 
     //ELEMENTOS UNITY
     public GameObject menupausa;
-    public Principal_Player jugador;
     public GameObject botonguardarsalir;
     public GameObject botonsalir;
     public AudioSource sonidopausa;
 
     //SCRIPTS
     public Guardado_datos guardado;
+    public Principal_Player jugador;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +47,7 @@ public class Menu_pausa : MonoBehaviour
                 menupausa.SetActive(true);
                 pausa = true;
                 jugador.sonidoambiente.Pause();
+                jugador.sonidocaminar.volume = 0.1f;
             }
             else
             {
@@ -54,6 +55,7 @@ public class Menu_pausa : MonoBehaviour
                 menupausa.SetActive(false);
                 pausa = false;
                 jugador.sonidoambiente.Play();
+                jugador.sonidocaminar.volume = 0.5f;
             }
         }
     }

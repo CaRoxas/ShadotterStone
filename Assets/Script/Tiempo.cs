@@ -7,7 +7,8 @@ public class Tiempo : MonoBehaviour
 {
     //VARIABLES
     float rotasol = 2f;
-    float timer = 50;
+    [HideInInspector]
+    public float timer = 50;
 
     //SCRIPTS
     public Vida_Player vidilla;
@@ -33,7 +34,7 @@ public class Tiempo : MonoBehaviour
             if (vidilla.vidanow > 0)
             {
                 vidilla.vidanow = vidilla.vidanow - 1;
-                timer = 10;
+                timer = 50;
             }
         }
         //Debug.Log(vidilla.vidanow);

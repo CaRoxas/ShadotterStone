@@ -12,6 +12,7 @@ public class Inventario : MonoBehaviour
 
     //SCRIPTS
     public Interfaz Interfaz;
+    public Tiempo Tiempo;
     public Guardado_datos guardado;
 
     //Para hacer que cargue el inventario en un singleton
@@ -47,14 +48,17 @@ public class Inventario : MonoBehaviour
     public void GuadarArandano() 
     {
         arandano++;
+        Tiempo.timer = 50;
     }
     public void GuardarHuevo()
     {
         huevo++;
+        Tiempo.timer = 50;
     }
     public void GuardarPescado()
     {
         pescado++;
+        Tiempo.timer = 50;
     }
     public void QuitarArandano()
     {
